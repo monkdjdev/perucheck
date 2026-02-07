@@ -1,0 +1,52 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description = 'Tu panel diario con tipo de cambio, pico y placa, calculadoras laborales y mas. Informacion util para el Peru actualizada todos los dias.',
+  canonical
+} = Astro.props;
+
+const siteUrl = 'https://perualdia.pe';
+const fullTitle = title === 'Inicio' ? 'Peru al Dia - Tu panel diario de informacion util' : `${title} | Peru al Dia`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    {canonical && <link rel="canonical" href={`${siteUrl}${canonical}`} />}
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:site_name" content="Peru al Dia" />
+
+    <!-- Google AdSense - Reemplazar con tu ID -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+    <title>{fullTitle}</title>
+  </head>
+  <body class="bg-bg text-text min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 py-6">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

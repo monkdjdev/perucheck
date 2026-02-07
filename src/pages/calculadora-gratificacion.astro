@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CalculadoraGratificacion from '../components/CalculadoraGratificacion';
+---
+
+<Layout
+  title="Calculadora Gratificacion 2025"
+  description="Calcula tu gratificacion de julio y diciembre 2025. Incluye bonificacion extraordinaria del 9% (Ley 30334). Ingresa tu sueldo y conoce cuanto recibiras."
+  canonical="/calculadora-gratificacion"
+>
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold">Calculadora de Gratificacion 2025</h1>
+    <p class="text-[var(--color-text-muted)] text-sm mt-1">
+      Calcula tu gratificacion de julio o diciembre con la bonificacion extraordinaria incluida.
+    </p>
+  </div>
+
+  <CalculadoraGratificacion client:load />
+
+  <!-- Contenido SEO -->
+  <div class="bg-white rounded-xl border border-[var(--color-border)] p-6 mt-6">
+    <h2 class="text-lg font-bold mb-3">Sobre la Gratificacion en Peru</h2>
+    <div class="text-sm text-[var(--color-text-muted)] space-y-3">
+      <p>
+        La gratificacion es un beneficio laboral que reciben los trabajadores en planilla dos veces al
+        ano: en julio (Fiestas Patrias) y en diciembre (Navidad). Equivale a un sueldo completo si
+        se trabajo todo el semestre.
+      </p>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">Bonificacion extraordinaria (9%)</h3>
+      <p>
+        Segun la Ley 30334, la gratificacion esta inafecta de aportes al trabajador (ONP, AFP,
+        EsSalud). El empleador debe pagar una bonificacion extraordinaria del 9% sobre la
+        gratificacion, equivalente al aporte que dejaria de hacer a EsSalud.
+      </p>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">Requisitos</h3>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Estar en planilla (regimen general o MYPE)</li>
+        <li>Haber trabajado al menos 1 mes completo en el semestre</li>
+        <li>Estar laborando en el mes de pago o estar en uso de descanso vacacional, licencia con goce de haber, o descanso por incapacidad</li>
+      </ul>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">Gratificacion trunca</h3>
+      <p>
+        Si el trabajador cesa antes de la fecha de pago, recibe una gratificacion proporcional
+        a los meses trabajados en el semestre (gratificacion trunca).
+      </p>
+    </div>
+  </div>
+</Layout>

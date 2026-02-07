@@ -1,0 +1,78 @@
+---
+// Datos de ejemplo para el dashboard del dia
+const fecha = new Date().toLocaleDateString('es-PE', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+// Pico y placa
+const RESTRICCIONES: Record<number, number[]> = {
+  1: [1, 2],
+  2: [3, 4],
+  3: [5, 6],
+  4: [7, 8],
+  5: [9, 0],
+};
+const diaHoy = new Date().getDay();
+const esFinDeSemana = diaHoy === 0 || diaHoy === 6;
+const placasHoy = RESTRICCIONES[diaHoy] || [];
+
+const cards = [
+  {
+    titulo: 'Tipo de Cambio',
+    icono: '&#36;',
+    valor: 'S/ 3.72 / S/ 3.75',
+    detalle: 'Compra / Venta (SUNAT)',
+    color: 'text-[var(--color-primary)]',
+    bgColor: 'bg-blue-50',
+    link: '/tipo-de-cambio',
+  },
+  {
+    titulo: 'Pico y Placa',
+    icono: '&#128663;',
+    valor: esFinDeSemana ? 'Sin restriccion' : `Placas: ${placasHoy.join(' y ')}`,
+    detalle: esFinDeSemana ? 'Fin de semana' : 'Lima Metropolitana',
+    color: 'text-[var(--color-accent)]',
+    bgColor: 'bg-amber-50',
+    link: '/pico-y-placa',
+  },
+  {
+    titulo: 'UIT 2025',
+    icono: '&#128176;',
+    valor: 'S/ 5,350',
+    detalle: 'Unidad Impositiva Tributaria',
+    color: 'text-[var(--color-secondary)]',
+    bgColor: 'bg-green-50',
+    link: '#',
+  },
+  {
+    titulo: 'Sueldo Minimo',
+    icono: '&#128188;',
+    valor: 'S/ 1,130',
+    detalle: 'Remuneracion Minima Vital',
+    color: 'text-purple-600',
+    bgColor: 'bg-purple-50',
+    link: '/calculadora-cts',
+  },
+];
+---
+
+<div class="mb-6">
+  <h1 class="text-2xl font-bold mb-1">Panel del Dia</h1>
+  <p class="text-text-muted text-sm capitalize">{fecha}</p>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+  {cards.map(card => (
+    <a href={card.link} class={`${card.bgColor} rounded-xl p-4 border border-transparent hover:border-[var(--color-border)] transition-all hover:shadow-md group`}>
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm font-medium text-text-muted">{card.titulo}</span>
+        <span class="text-2xl" set:html={card.icono}></span>
+      </div>
+      <p class={`text-lg font-bold ${card.color}`}>{card.valor}</p>
+      <p class="text-xs text-text-muted mt-1">{card.detalle}</p>
+    </a>
+  ))}
+</div>

@@ -1,0 +1,44 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-surface border-t border-border mt-auto">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- About -->
+      <div>
+        <h3 class="font-bold text-lg mb-3">Peru al Dia</h3>
+        <p class="text-text-muted text-sm">
+          Tu panel diario con informacion util actualizada para el Peru.
+          Tipo de cambio, pico y placa, calculadoras laborales y mas.
+        </p>
+      </div>
+
+      <!-- Herramientas -->
+      <div>
+        <h3 class="font-bold text-lg mb-3">Herramientas</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/tipo-de-cambio" class="text-text-muted hover:text-primary transition-colors">Tipo de Cambio</a></li>
+          <li><a href="/pico-y-placa" class="text-text-muted hover:text-primary transition-colors">Pico y Placa</a></li>
+          <li><a href="/calculadora-cts" class="text-text-muted hover:text-primary transition-colors">Calculadora CTS</a></li>
+          <li><a href="/calculadora-gratificacion" class="text-text-muted hover:text-primary transition-colors">Calculadora Gratificacion</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h3 class="font-bold text-lg mb-3">Legal</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/politica-privacidad" class="text-text-muted hover:text-primary transition-colors">Politica de Privacidad</a></li>
+          <li><a href="/terminos" class="text-text-muted hover:text-primary transition-colors">Terminos de Uso</a></li>
+          <li><a href="/contacto" class="text-text-muted hover:text-primary transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-border mt-8 pt-6 text-center text-text-muted text-sm">
+      <p>&copy; {currentYear} Peru al Dia. Todos los derechos reservados.</p>
+      <p class="mt-1">La informacion mostrada es referencial. Consulta fuentes oficiales para datos exactos.</p>
+    </div>
+  </div>
+</footer>

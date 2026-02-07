@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PicoPlacaWidget from '../components/PicoPlacaWidget';
+import PicoPlacaSemana from '../components/PicoPlacaSemana.astro';
+---
+
+<Layout
+  title="Pico y Placa Lima Hoy"
+  description="Consulta el pico y placa de hoy en Lima Metropolitana. Verifica si tu vehiculo puede circular segun el ultimo digito de tu placa. Horarios y calendario semanal."
+  canonical="/pico-y-placa"
+>
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold">Pico y Placa Lima Hoy</h1>
+    <p class="text-[var(--color-text-muted)] text-sm mt-1">
+      Verifica si tu vehiculo puede circular hoy segun la restriccion vehicular de Lima Metropolitana.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+    <PicoPlacaWidget client:load />
+    <PicoPlacaSemana />
+  </div>
+
+  <!-- Contenido SEO -->
+  <div class="bg-white rounded-xl border border-[var(--color-border)] p-6">
+    <h2 class="text-lg font-bold mb-3">Sobre el Pico y Placa en Lima</h2>
+    <div class="text-sm text-[var(--color-text-muted)] space-y-3">
+      <p>
+        El sistema de pico y placa es una medida de restriccion vehicular implementada por la
+        Municipalidad Metropolitana de Lima para reducir la congestion vehicular en las principales
+        vias de la ciudad.
+      </p>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">Reglas principales</h3>
+      <ul class="list-disc list-inside space-y-1">
+        <li>La restriccion aplica de lunes a viernes.</li>
+        <li>Horario manana: 6:30 a.m. a 10:00 a.m.</li>
+        <li>Horario tarde: 5:00 p.m. a 9:00 p.m.</li>
+        <li>No aplica sabados, domingos ni feriados nacionales.</li>
+        <li>Se basa en el ultimo digito de la placa vehicular.</li>
+      </ul>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">Excepciones</h3>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Vehiculos de emergencia (ambulancias, bomberos, policia).</li>
+        <li>Vehiculos de transporte publico.</li>
+        <li>Vehiculos con placa diplomatica.</li>
+        <li>Vehiculos electricos e hibridos (segun normativa vigente).</li>
+      </ul>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">Multas por infraccion</h3>
+      <p>
+        Circular durante el horario de restriccion puede generar una multa. Consulta el Servicio de
+        Administracion Tributaria (SAT) de Lima para conocer el monto actualizado de las papeletas.
+      </p>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TipoCambioWidget from '../components/TipoCambioWidget';
+import ComparadorBancos from '../components/ComparadorBancos';
+import { getTipoCambio } from '../utils/tipoCambioService';
+
+// Obtener tipo de cambio real desde el servidor
+let tipoCambio;
+try {
+  tipoCambio = await getTipoCambio();
+} catch {
+  tipoCambio = { compra: 0, venta: 0, fuente: 'No disponible', fecha: '' };
+}
+
+const initialTcData = {
+  compra: tipoCambio.compra,
+  venta: tipoCambio.venta,
+  fuente: tipoCambio.fuente,
+  fecha: tipoCambio.fecha,
+};
+---
+
+<Layout
+  title="Tipo de Cambio Hoy"
+  description="Tipo de cambio del dolar hoy en Peru. Compara tasas de SUNAT, BCP, Interbank, BBVA, Rextie y Kambista. Convertidor de dolares a soles en tiempo real."
+  canonical="/tipo-de-cambio"
+>
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold">Tipo de Cambio Hoy en Peru</h1>
+    <p class="text-[var(--color-text-muted)] text-sm mt-1">
+      Consulta el tipo de cambio del dolar actualizado y compara entre bancos y casas de cambio digitales.
+    </p>
+  </div>
+
+  <div class="space-y-6">
+    <TipoCambioWidget client:load initialData={initialTcData} />
+    <ComparadorBancos client:load initialCompra={tipoCambio.compra} initialVenta={tipoCambio.venta} />
+
+    <!-- Contenido SEO -->
+    <div class="bg-white rounded-xl border border-[var(--color-border)] p-6">
+      <h2 class="text-lg font-bold mb-3">Sobre el tipo de cambio en Peru</h2>
+      <div class="text-sm text-[var(--color-text-muted)] space-y-3">
+        <p>
+          El tipo de cambio oficial en Peru es publicado diariamente por la SUNAT (Superintendencia Nacional
+          de Aduanas y de Administracion Tributaria). Este tipo de cambio se utiliza como referencia para
+          operaciones tributarias y aduaneras.
+        </p>
+        <p>
+          Los bancos comerciales como BCP, Interbank, BBVA y Scotiabank manejan sus propias tasas que
+          generalmente tienen un spread mayor. Las casas de cambio digitales como Rextie, Kambista y TKambio
+          suelen ofrecer mejores tasas al operar con menores costos operativos.
+        </p>
+        <h3 class="font-semibold text-[var(--color-text)] !mt-4">Consejos para cambiar dolares</h3>
+        <ul class="list-disc list-inside space-y-1">
+          <li><strong>Si vendes dolares:</strong> busca la tasa de compra mas alta.</li>
+          <li><strong>Si compras dolares:</strong> busca la tasa de venta mas baja.</li>
+          <li>Las casas de cambio digitales suelen ofrecer mejores tasas que los bancos.</li>
+          <li>Compara siempre antes de hacer una operacion grande.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>

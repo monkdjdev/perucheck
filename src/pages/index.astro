@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TipoCambioWidget from '../components/TipoCambioWidget';
+import PicoPlacaWidget from '../components/PicoPlacaWidget';
+import { getTipoCambio } from '../utils/tipoCambioService';
+
+// Obtener tipo de cambio real desde el servidor
+let tipoCambio;
+try {
+  tipoCambio = await getTipoCambio();
+} catch {
+  tipoCambio = { compra: 0, venta: 0, fuente: 'No disponible', fecha: '' };
+}
+
+const fecha = new Date().toLocaleDateString('es-PE', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+// Pico y placa
+const RESTRICCIONES: Record<number, number[]> = {
+  1: [1, 2],
+  2: [3, 4],
+  3: [5, 6],
+  4: [7, 8],
+  5: [9, 0],
+};
+const diaHoy = new Date().getDay();
+const esFinDeSemana = diaHoy === 0 || diaHoy === 6;
+const placasHoy = RESTRICCIONES[diaHoy] || [];
+
+const tcTexto = tipoCambio.compra > 0
+  ? `S/ ${tipoCambio.compra.toFixed(3)} / S/ ${tipoCambio.venta.toFixed(3)}`
+  : 'Cargando...';
+
+const cards = [
+  {
+    titulo: 'Tipo de Cambio',
+    icono: '&#36;',
+    valor: tcTexto,
+    detalle: `Compra / Venta (${tipoCambio.fuente})`,
+    color: 'text-[var(--color-primary)]',
+    bgColor: 'bg-blue-50',
+    link: '/tipo-de-cambio',
+  },
+  {
+    titulo: 'Pico y Placa',
+    icono: '&#128663;',
+    valor: esFinDeSemana ? 'Sin restriccion' : `Placas: ${placasHoy.join(' y ')}`,
+    detalle: esFinDeSemana ? 'Fin de semana' : 'Lima Metropolitana',
+    color: 'text-[var(--color-accent)]',
+    bgColor: 'bg-amber-50',
+    link: '/pico-y-placa',
+  },
+  {
+    titulo: 'UIT 2025',
+    icono: '&#128176;',
+    valor: 'S/ 5,350',
+    detalle: 'Unidad Impositiva Tributaria',
+    color: 'text-[var(--color-secondary)]',
+    bgColor: 'bg-green-50',
+    link: '#',
+  },
+  {
+    titulo: 'Sueldo Minimo',
+    icono: '&#128188;',
+    valor: 'S/ 1,130',
+    detalle: 'Remuneracion Minima Vital',
+    color: 'text-purple-600',
+    bgColor: 'bg-purple-50',
+    link: '/calculadora-cts',
+  },
+];
+
+const initialTcData = {
+  compra: tipoCambio.compra,
+  venta: tipoCambio.venta,
+  fuente: tipoCambio.fuente,
+  fecha: tipoCambio.fecha,
+};
+---
+
+<Layout title="Inicio" canonical="/" description="Tu panel diario con tipo de cambio, pico y placa, calculadoras laborales y mas. Informacion util para el Peru actualizada todos los dias.">
+  <!-- Panel del dia -->
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold mb-1">Panel del Dia</h1>
+    <p class="text-text-muted text-sm capitalize">{fecha}</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    {cards.map(card => (
+      <a href={card.link} class={`${card.bgColor} rounded-xl p-4 border border-transparent hover:border-[var(--color-border)] transition-all hover:shadow-md group`}>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium text-text-muted">{card.titulo}</span>
+          <span class="text-2xl" set:html={card.icono}></span>
+        </div>
+        <p class={`text-lg font-bold ${card.color}`}>{card.valor}</p>
+        <p class="text-xs text-text-muted mt-1">{card.detalle}</p>
+      </a>
+    ))}
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+    <TipoCambioWidget client:load initialData={initialTcData} />
+    <PicoPlacaWidget client:load />
+  </div>
+
+  <!-- Seccion de herramientas -->
+  <section class="mb-8">
+    <h2 class="text-xl font-bold mb-4">Herramientas utiles</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <a href="/calculadora-cts" class="bg-white rounded-xl border border-[var(--color-border)] p-5 hover:shadow-md transition-all group">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 text-xl">&#128178;</div>
+          <h3 class="font-semibold group-hover:text-[var(--color-primary)] transition-colors">Calculadora CTS</h3>
+        </div>
+        <p class="text-sm text-[var(--color-text-muted)]">Calcula tu Compensacion por Tiempo de Servicios semestral.</p>
+      </a>
+
+      <a href="/calculadora-gratificacion" class="bg-white rounded-xl border border-[var(--color-border)] p-5 hover:shadow-md transition-all group">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600 text-xl">&#127873;</div>
+          <h3 class="font-semibold group-hover:text-[var(--color-primary)] transition-colors">Calculadora Gratificacion</h3>
+        </div>
+        <p class="text-sm text-[var(--color-text-muted)]">Estima tu gratificacion de julio o diciembre con bonificacion.</p>
+      </a>
+
+      <a href="/tipo-de-cambio" class="bg-white rounded-xl border border-[var(--color-border)] p-5 hover:shadow-md transition-all group">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-600 text-xl">&#128181;</div>
+          <h3 class="font-semibold group-hover:text-[var(--color-primary)] transition-colors">Comparador Tipo de Cambio</h3>
+        </div>
+        <p class="text-sm text-[var(--color-text-muted)]">Compara tasas de bancos y casas de cambio digitales.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- SEO Content -->
+  <section class="bg-white rounded-xl border border-[var(--color-border)] p-6">
+    <h2 class="text-xl font-bold mb-3">Tu informacion diaria para el Peru</h2>
+    <p class="text-[var(--color-text-muted)] text-sm leading-relaxed mb-3">
+      Peru al Dia es tu panel de informacion diaria con datos actualizados que necesitas todos los dias.
+      Consulta el tipo de cambio del dolar en SUNAT y bancos, verifica si tu vehiculo tiene restriccion
+      de pico y placa en Lima, y utiliza nuestras calculadoras laborales para estimar tu CTS, gratificacion
+      y liquidacion.
+    </p>
+    <p class="text-[var(--color-text-muted)] text-sm leading-relaxed">
+      Toda la informacion en un solo lugar, actualizada y facil de consultar desde tu celular o computadora.
+    </p>
+  </section>
+</Layout>

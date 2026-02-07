@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CalculadoraCTS from '../components/CalculadoraCTS';
+---
+
+<Layout
+  title="Calculadora CTS 2025"
+  description="Calcula tu CTS (Compensacion por Tiempo de Servicios) 2025. Ingresa tu sueldo y conoce cuanto te corresponde de deposito semestral en mayo y noviembre."
+  canonical="/calculadora-cts"
+>
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold">Calculadora CTS 2025</h1>
+    <p class="text-[var(--color-text-muted)] text-sm mt-1">
+      Calcula tu Compensacion por Tiempo de Servicios de forma rapida y sencilla.
+    </p>
+  </div>
+
+  <CalculadoraCTS client:load />
+
+  <!-- Contenido SEO -->
+  <div class="bg-white rounded-xl border border-[var(--color-border)] p-6 mt-6">
+    <h2 class="text-lg font-bold mb-3">Sobre la CTS en Peru</h2>
+    <div class="text-sm text-[var(--color-text-muted)] space-y-3">
+      <p>
+        La CTS (Compensacion por Tiempo de Servicios) es un beneficio social que tienen todos los
+        trabajadores en planilla en el Peru. Funciona como un fondo de ahorro que protege al
+        trabajador ante una eventual perdida de empleo.
+      </p>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">Fechas de deposito</h3>
+      <ul class="list-disc list-inside space-y-1">
+        <li><strong>Mayo:</strong> Por el semestre noviembre - abril</li>
+        <li><strong>Noviembre:</strong> Por el semestre mayo - octubre</li>
+      </ul>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">Formula de calculo</h3>
+      <p>
+        La CTS se calcula tomando la remuneracion computable (sueldo + asignacion familiar +
+        1/6 de la ultima gratificacion) dividida entre 12, multiplicada por los meses trabajados
+        en el semestre.
+      </p>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">Conceptos que se incluyen</h3>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Sueldo basico</li>
+        <li>Asignacion familiar</li>
+        <li>1/6 de la ultima gratificacion percibida</li>
+        <li>Comisiones y horas extras (si son regulares)</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

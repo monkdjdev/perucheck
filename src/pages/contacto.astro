@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Contacto"
+  description="Contacta con el equipo de Peru al Dia. Envianos tus sugerencias, reporta errores o colabora con nosotros."
+  canonical="/contacto"
+>
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-2xl font-bold mb-6">Contacto</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Info -->
+      <div class="bg-white rounded-xl border border-[var(--color-border)] p-6">
+        <h2 class="text-lg font-semibold mb-4">Escribenos</h2>
+        <p class="text-sm text-[var(--color-text-muted)] mb-6">
+          Estamos abiertos a sugerencias, reportes de errores y oportunidades de colaboracion.
+        </p>
+
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-medium text-sm">Email</p>
+              <p class="text-sm text-[var(--color-text-muted)]">contacto@perualdia.pe</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600 shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-medium text-sm">Horario de atencion</p>
+              <p class="text-sm text-[var(--color-text-muted)]">Lunes a Viernes, 9:00 a.m. - 6:00 p.m.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-600 shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-medium text-sm">Ubicacion</p>
+              <p class="text-sm text-[var(--color-text-muted)]">Lima, Peru</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Temas -->
+      <div class="bg-white rounded-xl border border-[var(--color-border)] p-6">
+        <h2 class="text-lg font-semibold mb-4">Temas frecuentes</h2>
+
+        <div class="space-y-3">
+          <div class="p-3 bg-[var(--color-surface-alt)] rounded-lg">
+            <p class="font-medium text-sm">Reportar un error</p>
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">
+              Si encontraste un dato incorrecto o un error en alguna calculadora, avisanos para corregirlo.
+            </p>
+          </div>
+
+          <div class="p-3 bg-[var(--color-surface-alt)] rounded-lg">
+            <p class="font-medium text-sm">Sugerir una herramienta</p>
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">
+              Tienes una idea para una nueva calculadora o herramienta? Nos encantaria escucharla.
+            </p>
+          </div>
+
+          <div class="p-3 bg-[var(--color-surface-alt)] rounded-lg">
+            <p class="font-medium text-sm">Publicidad y colaboraciones</p>
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">
+              Interesado en publicitar en Peru al Dia o colaborar con nosotros? Escribenos.
+            </p>
+          </div>
+
+          <div class="p-3 bg-[var(--color-surface-alt)] rounded-lg">
+            <p class="font-medium text-sm">API y datos</p>
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">
+              Si necesitas acceso a nuestros datos o API, contactanos para mas informacion.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

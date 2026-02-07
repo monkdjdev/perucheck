@@ -1,0 +1,49 @@
+---
+const RESTRICCIONES: Record<number, number[]> = {
+  1: [1, 2],
+  2: [3, 4],
+  3: [5, 6],
+  4: [7, 8],
+  5: [9, 0],
+};
+
+const DIAS = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes'];
+const diaHoy = new Date().getDay();
+---
+
+<div class="bg-white rounded-xl border border-[var(--color-border)] p-6">
+  <h2 class="text-lg font-bold mb-4">Calendario Semanal</h2>
+
+  <div class="space-y-3">
+    {DIAS.map((dia, idx) => {
+      const diaNum = idx + 1;
+      const placas = RESTRICCIONES[diaNum];
+      const esHoy = diaNum === diaHoy;
+
+      return (
+        <div class={`flex items-center justify-between p-3 rounded-lg ${esHoy ? 'bg-amber-50 border border-amber-200' : 'bg-[var(--color-surface-alt)]'}`}>
+          <div class="flex items-center gap-3">
+            {esHoy && <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>}
+            <span class={`font-medium ${esHoy ? 'text-amber-800' : 'text-text'}`}>
+              {dia} {esHoy && '(Hoy)'}
+            </span>
+          </div>
+          <div class="flex gap-2">
+            {placas.map(num => (
+              <span class={`inline-flex items-center justify-center w-8 h-8 rounded-lg text-sm font-bold ${esHoy ? 'bg-amber-500 text-white' : 'bg-[var(--color-border)] text-text'}`}>
+                {num}
+              </span>
+            ))}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
+  <div class="mt-4 p-3 bg-[var(--color-surface-alt)] rounded-lg">
+    <p class="text-xs text-[var(--color-text-muted)]">
+      <strong>Horario de restriccion:</strong> Lunes a Viernes de 6:30 a.m. a 10:00 a.m. y de 5:00 p.m. a 9:00 p.m.
+      Sabados, domingos y feriados no hay restriccion.
+    </p>
+  </div>
+</div>
