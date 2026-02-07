@@ -4,15 +4,23 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Contacto"
-  description="Contacta con el equipo de Peru al Dia. Envianos tus sugerencias, reporta errores o colabora con nosotros."
+  description="Contacta con el equipo de PeruCheck. Envianos tus sugerencias, reporta errores o colabora con nosotros."
   canonical="/contacto"
 >
   <div class="max-w-3xl mx-auto">
-    <h1 class="text-2xl font-bold mb-6">Contacto</h1>
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+      </div>
+      <h1 class="text-2xl font-bold">Contacto</h1>
+    </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Info -->
-      <div class="bg-white rounded-xl border border-[var(--color-border)] p-6">
+      <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
         <h2 class="text-lg font-semibold mb-4">Escribenos</h2>
         <p class="text-sm text-[var(--color-text-muted)] mb-6">
           Estamos abiertos a sugerencias, reportes de errores y oportunidades de colaboracion.
@@ -20,19 +28,19 @@ import Layout from '../layouts/Layout.astro';
 
         <div class="space-y-4">
           <div class="flex items-start gap-3">
-            <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
             <div>
               <p class="font-medium text-sm">Email</p>
-              <p class="text-sm text-[var(--color-text-muted)]">contacto@perualdia.pe</p>
+              <p class="text-sm text-[var(--color-text-muted)]">contacto@perucheck.com</p>
             </div>
           </div>
 
           <div class="flex items-start gap-3">
-            <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-600 shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -44,7 +52,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
 
           <div class="flex items-start gap-3">
-            <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-600 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -59,34 +67,59 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Temas -->
-      <div class="bg-white rounded-xl border border-[var(--color-border)] p-6">
+      <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
         <h2 class="text-lg font-semibold mb-4">Temas frecuentes</h2>
 
         <div class="space-y-3">
-          <div class="p-3 bg-[var(--color-surface-alt)] rounded-lg">
-            <p class="font-medium text-sm">Reportar un error</p>
-            <p class="text-xs text-[var(--color-text-muted)] mt-1">
+          <div class="p-4 bg-[var(--color-surface-alt)] rounded-xl hover:bg-slate-100 transition-colors">
+            <div class="flex items-center gap-2 mb-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+              <p class="font-medium text-sm">Reportar un error</p>
+            </div>
+            <p class="text-xs text-[var(--color-text-muted)]">
               Si encontraste un dato incorrecto o un error en alguna calculadora, avisanos para corregirlo.
             </p>
           </div>
 
-          <div class="p-3 bg-[var(--color-surface-alt)] rounded-lg">
-            <p class="font-medium text-sm">Sugerir una herramienta</p>
-            <p class="text-xs text-[var(--color-text-muted)] mt-1">
+          <div class="p-4 bg-[var(--color-surface-alt)] rounded-xl hover:bg-slate-100 transition-colors">
+            <div class="flex items-center gap-2 mb-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+              <p class="font-medium text-sm">Sugerir una herramienta</p>
+            </div>
+            <p class="text-xs text-[var(--color-text-muted)]">
               Tienes una idea para una nueva calculadora o herramienta? Nos encantaria escucharla.
             </p>
           </div>
 
-          <div class="p-3 bg-[var(--color-surface-alt)] rounded-lg">
-            <p class="font-medium text-sm">Publicidad y colaboraciones</p>
-            <p class="text-xs text-[var(--color-text-muted)] mt-1">
-              Interesado en publicitar en Peru al Dia o colaborar con nosotros? Escribenos.
+          <div class="p-4 bg-[var(--color-surface-alt)] rounded-xl hover:bg-slate-100 transition-colors">
+            <div class="flex items-center gap-2 mb-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+              <p class="font-medium text-sm">Publicidad y colaboraciones</p>
+            </div>
+            <p class="text-xs text-[var(--color-text-muted)]">
+              Interesado en publicitar en PeruCheck o colaborar con nosotros? Escribenos.
             </p>
           </div>
 
-          <div class="p-3 bg-[var(--color-surface-alt)] rounded-lg">
-            <p class="font-medium text-sm">API y datos</p>
-            <p class="text-xs text-[var(--color-text-muted)] mt-1">
+          <div class="p-4 bg-[var(--color-surface-alt)] rounded-xl hover:bg-slate-100 transition-colors">
+            <div class="flex items-center gap-2 mb-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+              </svg>
+              <p class="font-medium text-sm">API y datos</p>
+            </div>
+            <p class="text-xs text-[var(--color-text-muted)]">
               Si necesitas acceso a nuestros datos o API, contactanos para mas informacion.
             </p>
           </div>

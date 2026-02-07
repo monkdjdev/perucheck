@@ -35,45 +35,6 @@ const tcTexto = tipoCambio.compra > 0
   ? `S/ ${tipoCambio.compra.toFixed(3)} / S/ ${tipoCambio.venta.toFixed(3)}`
   : 'Cargando...';
 
-const cards = [
-  {
-    titulo: 'Tipo de Cambio',
-    icono: '&#36;',
-    valor: tcTexto,
-    detalle: `Compra / Venta (${tipoCambio.fuente})`,
-    color: 'text-[var(--color-primary)]',
-    bgColor: 'bg-blue-50',
-    link: '/tipo-de-cambio',
-  },
-  {
-    titulo: 'Pico y Placa',
-    icono: '&#128663;',
-    valor: esFinDeSemana ? 'Sin restriccion' : `Placas: ${placasHoy.join(' y ')}`,
-    detalle: esFinDeSemana ? 'Fin de semana' : 'Lima Metropolitana',
-    color: 'text-[var(--color-accent)]',
-    bgColor: 'bg-amber-50',
-    link: '/pico-y-placa',
-  },
-  {
-    titulo: 'UIT 2025',
-    icono: '&#128176;',
-    valor: 'S/ 5,350',
-    detalle: 'Unidad Impositiva Tributaria',
-    color: 'text-[var(--color-secondary)]',
-    bgColor: 'bg-green-50',
-    link: '#',
-  },
-  {
-    titulo: 'Sueldo Minimo',
-    icono: '&#128188;',
-    valor: 'S/ 1,130',
-    detalle: 'Remuneracion Minima Vital',
-    color: 'text-purple-600',
-    bgColor: 'bg-purple-50',
-    link: '/calculadora-cts',
-  },
-];
-
 const initialTcData = {
   compra: tipoCambio.compra,
   venta: tipoCambio.venta,
@@ -84,24 +45,93 @@ const initialTcData = {
 
 <Layout title="Inicio" canonical="/" description="Tu panel diario con tipo de cambio, pico y placa, calculadoras laborales y mas. Informacion util para el Peru actualizada todos los dias.">
   <!-- Panel del dia -->
-  <div class="mb-6">
-    <h1 class="text-2xl font-bold mb-1">Panel del Dia</h1>
-    <p class="text-text-muted text-sm capitalize">{fecha}</p>
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-lg shadow-indigo-200/50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3h7v7H3z" />
+          <path d="M14 3h7v7h-7z" />
+          <path d="M14 14h7v7h-7z" />
+          <path d="M3 14h7v7H3z" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold">Panel del Dia</h1>
+        <p class="text-[var(--color-text-muted)] text-sm capitalize">{fecha}</p>
+      </div>
+    </div>
   </div>
 
+  <!-- Cards de resumen -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-    {cards.map(card => (
-      <a href={card.link} class={`${card.bgColor} rounded-xl p-4 border border-transparent hover:border-[var(--color-border)] transition-all hover:shadow-md group`}>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-sm font-medium text-text-muted">{card.titulo}</span>
-          <span class="text-2xl" set:html={card.icono}></span>
+    <!-- Tipo de Cambio -->
+    <a href="/tipo-de-cambio" class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-5 border border-indigo-100 hover:border-indigo-200 transition-all hover:shadow-md group">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm font-medium text-[var(--color-text-muted)]">Tipo de Cambio</span>
+        <div class="w-9 h-9 rounded-xl bg-white/80 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
         </div>
-        <p class={`text-lg font-bold ${card.color}`}>{card.valor}</p>
-        <p class="text-xs text-text-muted mt-1">{card.detalle}</p>
-      </a>
-    ))}
+      </div>
+      <p class="text-lg font-bold text-indigo-700">{tcTexto}</p>
+      <p class="text-xs text-[var(--color-text-muted)] mt-1">Compra / Venta ({tipoCambio.fuente})</p>
+    </a>
+
+    <!-- Pico y Placa -->
+    <a href="/pico-y-placa" class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-5 border border-amber-100 hover:border-amber-200 transition-all hover:shadow-md group">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm font-medium text-[var(--color-text-muted)]">Pico y Placa</span>
+        <div class="w-9 h-9 rounded-xl bg-white/80 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10l-2-4H8L6 10l-2.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2" />
+            <circle cx="7" cy="17" r="2" />
+            <circle cx="17" cy="17" r="2" />
+          </svg>
+        </div>
+      </div>
+      <p class="text-lg font-bold text-amber-700">
+        {esFinDeSemana ? 'Sin restriccion' : `Placas: ${placasHoy.join(' y ')}`}
+      </p>
+      <p class="text-xs text-[var(--color-text-muted)] mt-1">
+        {esFinDeSemana ? 'Fin de semana' : 'Lima Metropolitana'}
+      </p>
+    </a>
+
+    <!-- UIT -->
+    <div class="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-5 border border-emerald-100">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm font-medium text-[var(--color-text-muted)]">UIT 2025</span>
+        <div class="w-9 h-9 rounded-xl bg-white/80 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="M12 4v16" />
+            <path d="M2 12h20" />
+          </svg>
+        </div>
+      </div>
+      <p class="text-lg font-bold text-emerald-700">S/ 5,350</p>
+      <p class="text-xs text-[var(--color-text-muted)] mt-1">Unidad Impositiva Tributaria</p>
+    </div>
+
+    <!-- Sueldo Minimo -->
+    <a href="/calculadora-cts" class="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-5 border border-violet-100 hover:border-violet-200 transition-all hover:shadow-md group">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm font-medium text-[var(--color-text-muted)]">Sueldo Minimo</span>
+        <div class="w-9 h-9 rounded-xl bg-white/80 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+        </div>
+      </div>
+      <p class="text-lg font-bold text-violet-700">S/ 1,130</p>
+      <p class="text-xs text-[var(--color-text-muted)] mt-1">Remuneracion Minima Vital</p>
+    </a>
   </div>
 
+  <!-- Widgets principales -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
     <TipoCambioWidget client:load initialData={initialTcData} />
     <PicoPlacaWidget client:load />
@@ -109,27 +139,48 @@ const initialTcData = {
 
   <!-- Seccion de herramientas -->
   <section class="mb-8">
-    <h2 class="text-xl font-bold mb-4">Herramientas utiles</h2>
+    <div class="flex items-center gap-2 mb-5">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+      </svg>
+      <h2 class="text-xl font-bold">Herramientas utiles</h2>
+    </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <a href="/calculadora-cts" class="bg-white rounded-xl border border-[var(--color-border)] p-5 hover:shadow-md transition-all group">
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 text-xl">&#128178;</div>
+      <a href="/calculadora-cts" class="bg-white rounded-2xl border border-[var(--color-border)] p-5 hover:shadow-md transition-all group hover:border-blue-200">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+          </div>
           <h3 class="font-semibold group-hover:text-[var(--color-primary)] transition-colors">Calculadora CTS</h3>
         </div>
         <p class="text-sm text-[var(--color-text-muted)]">Calcula tu Compensacion por Tiempo de Servicios semestral.</p>
       </a>
 
-      <a href="/calculadora-gratificacion" class="bg-white rounded-xl border border-[var(--color-border)] p-5 hover:shadow-md transition-all group">
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600 text-xl">&#127873;</div>
+      <a href="/calculadora-gratificacion" class="bg-white rounded-2xl border border-[var(--color-border)] p-5 hover:shadow-md transition-all group hover:border-emerald-200">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4" />
+              <path d="M4 6v12c0 1.1.9 2 2 2h14v-4" />
+              <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z" />
+            </svg>
+          </div>
           <h3 class="font-semibold group-hover:text-[var(--color-primary)] transition-colors">Calculadora Gratificacion</h3>
         </div>
         <p class="text-sm text-[var(--color-text-muted)]">Estima tu gratificacion de julio o diciembre con bonificacion.</p>
       </a>
 
-      <a href="/tipo-de-cambio" class="bg-white rounded-xl border border-[var(--color-border)] p-5 hover:shadow-md transition-all group">
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-600 text-xl">&#128181;</div>
+      <a href="/tipo-de-cambio" class="bg-white rounded-2xl border border-[var(--color-border)] p-5 hover:shadow-md transition-all group hover:border-violet-200">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+              <polyline points="17 6 23 6 23 12" />
+            </svg>
+          </div>
           <h3 class="font-semibold group-hover:text-[var(--color-primary)] transition-colors">Comparador Tipo de Cambio</h3>
         </div>
         <p class="text-sm text-[var(--color-text-muted)]">Compara tasas de bancos y casas de cambio digitales.</p>
@@ -138,10 +189,16 @@ const initialTcData = {
   </section>
 
   <!-- SEO Content -->
-  <section class="bg-white rounded-xl border border-[var(--color-border)] p-6">
-    <h2 class="text-xl font-bold mb-3">Tu informacion diaria para el Peru</h2>
+  <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+    <div class="flex items-center gap-2 mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 11l3 3L22 4" />
+        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+      </svg>
+      <h2 class="text-xl font-bold">Tu informacion diaria para el Peru</h2>
+    </div>
     <p class="text-[var(--color-text-muted)] text-sm leading-relaxed mb-3">
-      Peru al Dia es tu panel de informacion diaria con datos actualizados que necesitas todos los dias.
+      PeruCheck es tu panel de informacion diaria con datos actualizados que necesitas todos los dias.
       Consulta el tipo de cambio del dolar en SUNAT y bancos, verifica si tu vehiculo tiene restriccion
       de pico y placa en Lima, y utiliza nuestras calculadoras laborales para estimar tu CTS, gratificacion
       y liquidacion.

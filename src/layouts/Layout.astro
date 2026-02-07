@@ -11,12 +11,12 @@ interface Props {
 
 const {
   title,
-  description = 'Tu panel diario con tipo de cambio, pico y placa, calculadoras laborales y mas. Informacion util para el Peru actualizada todos los dias.',
+  description = 'Tu panel diario con tipo de cambio, pico y placa, calculadoras laborales y mas. Informacion util para Peru actualizada todos los dias.',
   canonical
 } = Astro.props;
 
-const siteUrl = 'https://perualdia.pe';
-const fullTitle = title === 'Inicio' ? 'Peru al Dia - Tu panel diario de informacion util' : `${title} | Peru al Dia`;
+const siteUrl = 'https://perucheck.com';
+const fullTitle = title === 'Inicio' ? 'PeruCheck - Tu panel diario de informacion util' : `${title} | PeruCheck`;
 ---
 
 <!doctype html>
@@ -27,24 +27,31 @@ const fullTitle = title === 'Inicio' ? 'Peru al Dia - Tu panel diario de informa
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="sitemap" href="/sitemap.xml" />
     {canonical && <link rel="canonical" href={`${siteUrl}${canonical}`} />}
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_PE" />
-    <meta property="og:site_name" content="Peru al Dia" />
+    <meta property="og:site_name" content="PeruCheck" />
 
-    <!-- Google AdSense - Reemplazar con tu ID -->
+    <!-- Google AdSense -->
     <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script> -->
 
     <title>{fullTitle}</title>
+    <style>
+      body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    </style>
   </head>
   <body class="bg-bg text-text min-h-screen flex flex-col">
     <Header />
-    <main class="flex-1 w-full max-w-7xl mx-auto px-4 py-6">
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
       <slot />
     </main>
     <Footer />

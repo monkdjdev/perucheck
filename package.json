@@ -1,7 +1,7 @@
 {
-  "name": "perualdia",
+  "name": "perucheck",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -16,6 +16,7 @@
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.17.1",
+    "lucide-react": "^0.563.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwindcss": "^4.1.18"

@@ -28,10 +28,19 @@ export default function PicoPlacaWidget() {
   const restringido = ultimoDigito !== null && !info.esFinDeSemana && info.placasRestringidas.includes(ultimoDigito);
 
   return (
-    <div className="bg-white rounded-xl border border-[var(--color-border)] p-6">
+    <div className="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-bold">Pico y Placa Hoy</h2>
-        <span className="text-xs text-[var(--color-text-muted)]">Lima Metropolitana</span>
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10l-2-4H8L6 10l-2.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"></path>
+              <circle cx="7" cy="17" r="2"></circle>
+              <circle cx="17" cy="17" r="2"></circle>
+            </svg>
+          </div>
+          <h2 className="text-lg font-bold">Pico y Placa Hoy</h2>
+        </div>
+        <span className="text-xs text-[var(--color-text-muted)] bg-[var(--color-surface-alt)] px-2 py-1 rounded-full">Lima</span>
       </div>
 
       {/* Estado del dia */}

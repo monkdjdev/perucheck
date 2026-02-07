@@ -10,10 +10,21 @@ import PicoPlacaSemana from '../components/PicoPlacaSemana.astro';
   canonical="/pico-y-placa"
 >
   <div class="mb-6">
-    <h1 class="text-2xl font-bold">Pico y Placa Lima Hoy</h1>
-    <p class="text-[var(--color-text-muted)] text-sm mt-1">
-      Verifica si tu vehiculo puede circular hoy segun la restriccion vehicular de Lima Metropolitana.
-    </p>
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10l-2-4H8L6 10l-2.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2" />
+          <circle cx="7" cy="17" r="2" />
+          <circle cx="17" cy="17" r="2" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold">Pico y Placa Lima Hoy</h1>
+        <p class="text-[var(--color-text-muted)] text-sm mt-0.5">
+          Verifica si tu vehiculo puede circular hoy segun la restriccion vehicular de Lima Metropolitana.
+        </p>
+      </div>
+    </div>
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
@@ -22,8 +33,15 @@ import PicoPlacaSemana from '../components/PicoPlacaSemana.astro';
   </div>
 
   <!-- Contenido SEO -->
-  <div class="bg-white rounded-xl border border-[var(--color-border)] p-6">
-    <h2 class="text-lg font-bold mb-3">Sobre el Pico y Placa en Lima</h2>
+  <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+    <div class="flex items-center gap-2 mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="16" x2="12" y2="12" />
+        <line x1="12" y1="8" x2="12.01" y2="8" />
+      </svg>
+      <h2 class="text-lg font-bold">Sobre el Pico y Placa en Lima</h2>
+    </div>
     <div class="text-sm text-[var(--color-text-muted)] space-y-3">
       <p>
         El sistema de pico y placa es una medida de restriccion vehicular implementada por la

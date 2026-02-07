@@ -9,17 +9,34 @@ import CalculadoraCTS from '../components/CalculadoraCTS';
   canonical="/calculadora-cts"
 >
   <div class="mb-6">
-    <h1 class="text-2xl font-bold">Calculadora CTS 2025</h1>
-    <p class="text-[var(--color-text-muted)] text-sm mt-1">
-      Calcula tu Compensacion por Tiempo de Servicios de forma rapida y sencilla.
-    </p>
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold">Calculadora CTS 2025</h1>
+        <p class="text-[var(--color-text-muted)] text-sm mt-0.5">
+          Calcula tu Compensacion por Tiempo de Servicios de forma rapida y sencilla.
+        </p>
+      </div>
+    </div>
   </div>
 
   <CalculadoraCTS client:load />
 
   <!-- Contenido SEO -->
-  <div class="bg-white rounded-xl border border-[var(--color-border)] p-6 mt-6">
-    <h2 class="text-lg font-bold mb-3">Sobre la CTS en Peru</h2>
+  <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 mt-6 hover:shadow-sm transition-shadow">
+    <div class="flex items-center gap-2 mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="16" x2="12" y2="12" />
+        <line x1="12" y1="8" x2="12.01" y2="8" />
+      </svg>
+      <h2 class="text-lg font-bold">Sobre la CTS en Peru</h2>
+    </div>
     <div class="text-sm text-[var(--color-text-muted)] space-y-3">
       <p>
         La CTS (Compensacion por Tiempo de Servicios) es un beneficio social que tienen todos los

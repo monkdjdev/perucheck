@@ -52,9 +52,17 @@ export default function TipoCambioWidget({ initialData }: { initialData?: TipoCa
     : '';
 
   return (
-    <div className="bg-white rounded-xl border border-[var(--color-border)] p-6">
+    <div className="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-bold">Tipo de Cambio Hoy</h2>
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <h2 className="text-lg font-bold">Tipo de Cambio Hoy</h2>
+        </div>
         <span className="text-xs text-[var(--color-text-muted)]">
           {tc.fuente}{fechaFormateada ? ` - ${fechaFormateada}` : ''}
         </span>

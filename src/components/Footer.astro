@@ -2,43 +2,66 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-surface border-t border-border mt-auto">
-  <div class="max-w-7xl mx-auto px-4 py-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- About -->
-      <div>
-        <h3 class="font-bold text-lg mb-3">Peru al Dia</h3>
-        <p class="text-text-muted text-sm">
-          Tu panel diario con informacion util actualizada para el Peru.
-          Tipo de cambio, pico y placa, calculadoras laborales y mas.
+<footer class="gradient-dark mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="w-9 h-9 gradient-primary rounded-xl flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4"></path>
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+            </svg>
+          </div>
+          <span class="font-extrabold text-xl text-white tracking-tight">
+            Peru<span class="text-primary-light">Check</span>
+          </span>
+        </div>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Tu panel diario con informacion util actualizada para Peru. Todo lo que necesitas en un solo lugar.
         </p>
       </div>
 
       <!-- Herramientas -->
       <div>
-        <h3 class="font-bold text-lg mb-3">Herramientas</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/tipo-de-cambio" class="text-text-muted hover:text-primary transition-colors">Tipo de Cambio</a></li>
-          <li><a href="/pico-y-placa" class="text-text-muted hover:text-primary transition-colors">Pico y Placa</a></li>
-          <li><a href="/calculadora-cts" class="text-text-muted hover:text-primary transition-colors">Calculadora CTS</a></li>
-          <li><a href="/calculadora-gratificacion" class="text-text-muted hover:text-primary transition-colors">Calculadora Gratificacion</a></li>
+        <h3 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Herramientas</h3>
+        <ul class="space-y-2.5">
+          <li><a href="/tipo-de-cambio" class="text-slate-400 hover:text-white transition-colors text-sm">Tipo de Cambio</a></li>
+          <li><a href="/pico-y-placa" class="text-slate-400 hover:text-white transition-colors text-sm">Pico y Placa</a></li>
+          <li><a href="/calculadora-cts" class="text-slate-400 hover:text-white transition-colors text-sm">Calculadora CTS</a></li>
+          <li><a href="/calculadora-gratificacion" class="text-slate-400 hover:text-white transition-colors text-sm">Calculadora Gratificacion</a></li>
         </ul>
       </div>
 
-      <!-- Legal -->
+      <!-- Recursos -->
       <div>
-        <h3 class="font-bold text-lg mb-3">Legal</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/politica-privacidad" class="text-text-muted hover:text-primary transition-colors">Politica de Privacidad</a></li>
-          <li><a href="/terminos" class="text-text-muted hover:text-primary transition-colors">Terminos de Uso</a></li>
-          <li><a href="/contacto" class="text-text-muted hover:text-primary transition-colors">Contacto</a></li>
+        <h3 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Recursos</h3>
+        <ul class="space-y-2.5">
+          <li><a href="/politica-privacidad" class="text-slate-400 hover:text-white transition-colors text-sm">Politica de Privacidad</a></li>
+          <li><a href="/terminos" class="text-slate-400 hover:text-white transition-colors text-sm">Terminos de Uso</a></li>
+          <li><a href="/contacto" class="text-slate-400 hover:text-white transition-colors text-sm">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Fuentes -->
+      <div>
+        <h3 class="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Fuentes oficiales</h3>
+        <ul class="space-y-2.5">
+          <li><a href="https://www.sunat.gob.pe" target="_blank" rel="noopener" class="text-slate-400 hover:text-white transition-colors text-sm">SUNAT</a></li>
+          <li><a href="https://www.sbs.gob.pe" target="_blank" rel="noopener" class="text-slate-400 hover:text-white transition-colors text-sm">SBS</a></li>
+          <li><a href="https://www.munlima.gob.pe" target="_blank" rel="noopener" class="text-slate-400 hover:text-white transition-colors text-sm">Municipalidad de Lima</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="border-t border-border mt-8 pt-6 text-center text-text-muted text-sm">
-      <p>&copy; {currentYear} Peru al Dia. Todos los derechos reservados.</p>
-      <p class="mt-1">La informacion mostrada es referencial. Consulta fuentes oficiales para datos exactos.</p>
+    <div class="border-t border-slate-700/50 mt-10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-slate-500 text-sm">
+        &copy; {currentYear} PeruCheck. Todos los derechos reservados.
+      </p>
+      <p class="text-slate-600 text-xs">
+        Informacion referencial. Consulta fuentes oficiales para datos exactos.
+      </p>
     </div>
   </div>
 </footer>
