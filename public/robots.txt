@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://perucheck.com/sitemap-index.xml
