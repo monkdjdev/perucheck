@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
@@ -44,6 +45,9 @@ const fullTitle = title === 'Inicio' ? 'PeruCheck - Tu panel diario de informaci
 
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7524782215145799" crossorigin="anonymous"></script>
+
+    <!-- Vercel Analytics -->
+    <Analytics />
 
     <title>{fullTitle}</title>
     <style>
