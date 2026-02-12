@@ -1,7 +1,9 @@
 import type { APIRoute } from 'astro';
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async ({ url: reqUrl }) => {
   try {
+    const debug = reqUrl.searchParams.has('debug');
+
     const today = new Date();
     const thirtyDaysAgo = new Date(today.getTime() - 35 * 24 * 60 * 60 * 1000);
     const y1 = thirtyDaysAgo.getFullYear();
@@ -11,9 +13,12 @@ export const GET: APIRoute = async () => {
     const m2 = today.getMonth() + 1;
     const d2 = today.getDate();
 
-    const url = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD04639PD-PD04640PD/json/${y1}-${m1}-${d1}/${y2}-${m2}-${d2}/ing`;
-    const res = await fetch(url, {
-      headers: { 'Accept': 'application/json' },
+    const apiUrl = `https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD04639PD-PD04640PD/json/${y1}-${m1}-${d1}/${y2}-${m2}-${d2}/ing`;
+    const res = await fetch(apiUrl, {
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0',
+      },
       signal: AbortSignal.timeout(10000),
     });
 
@@ -24,19 +29,32 @@ export const GET: APIRoute = async () => {
       });
     }
 
-    // Use text() and clean before parsing - BCRP sometimes returns BOM or extra chars
-    let rawText = await res.text();
-    rawText = rawText.replace(/^\uFEFF/, '').trim();
-    // Extract only the JSON object (from first { to last })
-    const start = rawText.indexOf('{');
-    const end = rawText.lastIndexOf('}');
+    const rawText = await res.text();
+
+    if (debug) {
+      return new Response(JSON.stringify({
+        length: rawText.length,
+        first100: rawText.slice(0, 100),
+        last100: rawText.slice(-100),
+        contentType: res.headers.get('content-type'),
+        status: res.status,
+      }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Clean and extract JSON
+    const cleaned = rawText.replace(/^\uFEFF/, '').trim();
+    const start = cleaned.indexOf('{');
+    const end = cleaned.lastIndexOf('}');
     if (start === -1 || end === -1) {
-      return new Response(JSON.stringify({ error: 'Invalid BCRP response format' }), {
+      return new Response(JSON.stringify({ error: 'Invalid BCRP response format', rawLength: rawText.length }), {
         status: 502,
         headers: { 'Content-Type': 'application/json' },
       });
     }
-    const json = JSON.parse(rawText.slice(start, end + 1));
+    const json = JSON.parse(cleaned.slice(start, end + 1));
     if (!json.periods) {
       return new Response(JSON.stringify({ error: 'No periods in BCRP response' }), {
         status: 502,
@@ -56,7 +74,7 @@ export const GET: APIRoute = async () => {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'public, max-age=3600', // Cache 1 hora
+        'Cache-Control': 'public, max-age=3600',
       },
     });
   } catch (error) {
