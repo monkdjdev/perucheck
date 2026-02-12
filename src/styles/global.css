@@ -32,6 +32,140 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+/* Variables dark */
+.dark {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-alt: #334155;
+  --color-surface-hover: #475569;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-text-light: #cbd5e1;
+  --color-border: #334155;
+  --color-border-light: #1e293b;
+}
+
+/* Sobrescribir bg-white en dark mode */
+.dark .bg-white {
+  background-color: var(--color-surface) !important;
+}
+.dark .bg-white\/60 {
+  background-color: rgba(30, 41, 59, 0.6) !important;
+}
+.dark .bg-white\/70 {
+  background-color: rgba(30, 41, 59, 0.7) !important;
+}
+.dark .bg-white\/80 {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+}
+
+/* Grises claros → oscuros */
+.dark .bg-gray-50,
+.dark .bg-gray-100 {
+  background-color: var(--color-surface-alt) !important;
+}
+
+/* Gradientes de cards en dark - oscurecer los fondos -50 */
+.dark .from-indigo-50 { --tw-gradient-from: #1e1b4b !important; }
+.dark .to-blue-50 { --tw-gradient-to: #172554 !important; }
+.dark .from-amber-50 { --tw-gradient-from: #451a03 !important; }
+.dark .to-orange-50 { --tw-gradient-to: #431407 !important; }
+.dark .from-emerald-50 { --tw-gradient-from: #022c22 !important; }
+.dark .to-green-50 { --tw-gradient-to: #052e16 !important; }
+.dark .from-violet-50 { --tw-gradient-from: #2e1065 !important; }
+.dark .to-purple-50 { --tw-gradient-to: #3b0764 !important; }
+.dark .from-rose-50 { --tw-gradient-from: #4c0519 !important; }
+.dark .to-pink-50 { --tw-gradient-to: #500724 !important; }
+.dark .from-cyan-50 { --tw-gradient-from: #083344 !important; }
+.dark .to-sky-50 { --tw-gradient-to: #082f49 !important; }
+.dark .from-orange-50 { --tw-gradient-from: #431407 !important; }
+.dark .to-amber-50 { --tw-gradient-to: #451a03 !important; }
+.dark .from-purple-50 { --tw-gradient-from: #3b0764 !important; }
+.dark .to-indigo-50 { --tw-gradient-to: #1e1b4b !important; }
+.dark .from-blue-50 { --tw-gradient-from: #172554 !important; }
+
+/* Borders de colores en dark */
+.dark .border-indigo-100 { border-color: #312e81 !important; }
+.dark .border-indigo-200 { border-color: #3730a3 !important; }
+.dark .border-amber-100 { border-color: #78350f !important; }
+.dark .border-amber-200 { border-color: #92400e !important; }
+.dark .border-emerald-100 { border-color: #064e3b !important; }
+.dark .border-violet-100 { border-color: #4c1d95 !important; }
+.dark .border-violet-200 { border-color: #5b21b6 !important; }
+.dark .border-rose-100 { border-color: #881337 !important; }
+.dark .border-rose-200 { border-color: #9f1239 !important; }
+.dark .border-rose-300 { border-color: #be123c !important; }
+.dark .border-cyan-100 { border-color: #155e75 !important; }
+.dark .border-cyan-200 { border-color: #0e7490 !important; }
+.dark .border-orange-100 { border-color: #7c2d12 !important; }
+.dark .border-orange-200 { border-color: #9a3412 !important; }
+.dark .border-purple-200 { border-color: #6b21a8 !important; }
+.dark .border-blue-200 { border-color: #1e40af !important; }
+.dark .border-emerald-200 { border-color: #065f46 !important; }
+
+/* Fondos de iconos en dark */
+.dark .bg-indigo-50 { background-color: #312e81 !important; }
+.dark .bg-amber-50 { background-color: #78350f !important; }
+.dark .bg-emerald-50 { background-color: #064e3b !important; }
+.dark .bg-violet-50 { background-color: #4c1d95 !important; }
+.dark .bg-rose-50 { background-color: #4c0519 !important; }
+.dark .bg-blue-50 { background-color: #1e3a5f !important; }
+.dark .bg-cyan-50 { background-color: #083344 !important; }
+.dark .bg-orange-50 { background-color: #431407 !important; }
+.dark .bg-purple-50 { background-color: #3b0764 !important; }
+
+/* Fondos parciales */
+.dark .bg-rose-50\/50 { background-color: rgba(76, 5, 25, 0.5) !important; }
+.dark .bg-cyan-50\/50 { background-color: rgba(8, 51, 68, 0.5) !important; }
+.dark .bg-emerald-50\/50 { background-color: rgba(6, 78, 59, 0.5) !important; }
+.dark .bg-orange-50\/50 { background-color: rgba(67, 20, 7, 0.5) !important; }
+
+/* Rose-100 para badges */
+.dark .bg-rose-100 { background-color: #881337 !important; }
+.dark .bg-cyan-100 { background-color: #155e75 !important; }
+.dark .bg-orange-100 { background-color: #7c2d12 !important; }
+.dark .bg-purple-100 { background-color: #581c87 !important; }
+
+/* Inputs en dark mode */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: var(--color-surface) !important;
+  color: var(--color-text) !important;
+  border-color: var(--color-border) !important;
+}
+.dark input::placeholder {
+  color: var(--color-text-muted) !important;
+}
+.dark input:focus {
+  border-color: var(--color-primary) !important;
+}
+
+/* Textos de colores que necesitan ajuste en dark */
+.dark .text-indigo-700 { color: #a5b4fc !important; }
+.dark .text-amber-700 { color: #fbbf24 !important; }
+.dark .text-emerald-700 { color: #6ee7b7 !important; }
+.dark .text-violet-700 { color: #c4b5fd !important; }
+.dark .text-rose-700 { color: #fda4af !important; }
+.dark .text-rose-800 { color: #fecdd3 !important; }
+.dark .text-cyan-700 { color: #67e8f9 !important; }
+
+/* Ring en dark */
+.dark .ring-rose-200 { --tw-ring-color: #9f1239 !important; }
+
+/* Shadow en dark */
+.dark .shadow-rose-100\/50 { --tw-shadow-color: rgba(136, 19, 55, 0.5) !important; }
+.dark .shadow-indigo-200\/50 { --tw-shadow-color: rgba(55, 48, 163, 0.5) !important; }
+.dark .shadow-emerald-200\/50 { --tw-shadow-color: rgba(6, 95, 70, 0.5) !important; }
+
+/* ============================================
+   END DARK MODE
+   ============================================ */
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -42,6 +176,9 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
 }
 
 /* Animaciones */
@@ -89,4 +226,12 @@ body {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+/* Transicion suave de colores */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

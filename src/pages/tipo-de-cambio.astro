@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import TipoCambioWidget from '../components/TipoCambioWidget';
 import ComparadorBancos from '../components/ComparadorBancos';
+import HistorialTC from '../components/HistorialTC';
 import { getTipoCambio } from '../utils/tipoCambioService';
 
 // Obtener tipo de cambio real desde el servidor
@@ -45,6 +46,7 @@ const initialTcData = {
   <div class="space-y-6">
     <TipoCambioWidget client:load initialData={initialTcData} />
     <ComparadorBancos client:load initialCompra={tipoCambio.compra} initialVenta={tipoCambio.venta} />
+    <HistorialTC client:load />
 
     <!-- Contenido SEO -->
     <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">

@@ -1,0 +1,253 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const IGV = 0.18;
+---
+
+<Layout
+  title="Calculadora de IGV Peru 2026"
+  description="Calcula el IGV (18%) de cualquier monto. Agrega o quita el IGV facilmente. Herramienta rapida para calcular impuestos en Peru."
+  canonical="/calculadora-igv"
+>
+  <!-- Header -->
+  <div class="mb-6">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="16" height="20" rx="2" />
+          <line x1="8" y1="6" x2="16" y2="6" />
+          <line x1="16" y1="14" x2="16" y2="18" />
+          <path d="M16 10h.01" />
+          <path d="M12 10h.01" />
+          <path d="M8 10h.01" />
+          <path d="M12 14h.01" />
+          <path d="M8 14h.01" />
+          <path d="M12 18h.01" />
+          <path d="M8 18h.01" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold">Calculadora de IGV</h1>
+        <p class="text-[var(--color-text-muted)] text-sm mt-0.5">
+          Calcula el IGV (18%) de cualquier monto de forma rapida.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info IGV -->
+  <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl border border-orange-100 p-5 mb-6">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-xl bg-white border border-orange-200 flex items-center justify-center shadow-sm">
+        <span class="text-xl font-extrabold text-orange-600">18%</span>
+      </div>
+      <div>
+        <p class="text-xs font-semibold text-orange-500 uppercase tracking-wider">IGV Peru 2026</p>
+        <p class="text-sm text-[var(--color-text-muted)]">Impuesto General a las Ventas vigente</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculadora -->
+  <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 mb-6">
+    <div class="max-w-lg mx-auto">
+      <!-- Input -->
+      <div class="mb-5">
+        <label class="text-sm font-medium mb-2 block">Ingresa el monto (S/)</label>
+        <input
+          type="number"
+          id="input-monto"
+          placeholder="Ej: 1000"
+          min="0"
+          step="0.01"
+          class="w-full px-4 py-4 rounded-xl border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-orange-400 text-2xl font-bold text-center"
+        />
+      </div>
+
+      <!-- Selector de operación -->
+      <div class="flex rounded-xl border border-[var(--color-border)] overflow-hidden mb-5">
+        <button id="btn-agregar" class="flex-1 py-3 text-sm font-semibold bg-orange-500 text-white transition-colors">
+          + Agregar IGV
+        </button>
+        <button id="btn-quitar" class="flex-1 py-3 text-sm font-semibold bg-white text-[var(--color-text-muted)] hover:bg-gray-50 transition-colors">
+          − Quitar IGV
+        </button>
+      </div>
+
+      <!-- Resultados Agregar IGV -->
+      <div id="resultado-agregar" class="space-y-3">
+        <div class="bg-gray-50 rounded-xl p-4 flex items-center justify-between">
+          <span class="text-sm text-[var(--color-text-muted)]">Monto base</span>
+          <span class="font-bold" id="res-ag-base">S/ 0.00</span>
+        </div>
+        <div class="bg-orange-50 rounded-xl p-4 flex items-center justify-between border border-orange-100">
+          <span class="text-sm font-medium text-orange-600">IGV (18%)</span>
+          <span class="font-bold text-orange-600" id="res-ag-igv">S/ 0.00</span>
+        </div>
+        <div class="bg-orange-500 rounded-xl p-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-semibold text-white">Total con IGV</span>
+            <span class="text-xl font-extrabold text-white" id="res-ag-total">S/ 0.00</span>
+          </div>
+          <button id="copy-ag" class="mt-2 mx-auto flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/20 hover:bg-white/30 transition-colors text-white text-xs font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copiar resultado</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Resultados Quitar IGV -->
+      <div id="resultado-quitar" class="space-y-3 hidden">
+        <div class="bg-gray-50 rounded-xl p-4 flex items-center justify-between">
+          <span class="text-sm text-[var(--color-text-muted)]">Monto con IGV</span>
+          <span class="font-bold" id="res-qt-total">S/ 0.00</span>
+        </div>
+        <div class="bg-orange-50 rounded-xl p-4 flex items-center justify-between border border-orange-100">
+          <span class="text-sm font-medium text-orange-600">IGV (18%)</span>
+          <span class="font-bold text-orange-600" id="res-qt-igv">S/ 0.00</span>
+        </div>
+        <div class="bg-orange-500 rounded-xl p-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-semibold text-white">Monto sin IGV</span>
+            <span class="text-xl font-extrabold text-white" id="res-qt-base">S/ 0.00</span>
+          </div>
+          <button id="copy-qt" class="mt-2 mx-auto flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/20 hover:bg-white/30 transition-colors text-white text-xs font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copiar resultado</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla rápida -->
+    <div class="mt-8 pt-6 border-t border-[var(--color-border)]">
+      <p class="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-3">Tabla rapida de IGV</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <p class="text-xs text-[var(--color-text-muted)]">S/ 100</p>
+          <p class="font-bold text-sm">IGV: S/ 18.00</p>
+          <p class="text-[10px] text-[var(--color-text-muted)]">Total: S/ 118.00</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <p class="text-xs text-[var(--color-text-muted)]">S/ 500</p>
+          <p class="font-bold text-sm">IGV: S/ 90.00</p>
+          <p class="text-[10px] text-[var(--color-text-muted)]">Total: S/ 590.00</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <p class="text-xs text-[var(--color-text-muted)]">S/ 1,000</p>
+          <p class="font-bold text-sm">IGV: S/ 180.00</p>
+          <p class="text-[10px] text-[var(--color-text-muted)]">Total: S/ 1,180.00</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <p class="text-xs text-[var(--color-text-muted)]">S/ 5,000</p>
+          <p class="font-bold text-sm">IGV: S/ 900.00</p>
+          <p class="text-[10px] text-[var(--color-text-muted)]">Total: S/ 5,900.00</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido SEO -->
+  <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6">
+    <div class="flex items-center gap-2 mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="16" x2="12" y2="12" />
+        <line x1="12" y1="8" x2="12.01" y2="8" />
+      </svg>
+      <h2 class="text-lg font-bold">Sobre el IGV en Peru</h2>
+    </div>
+    <div class="text-sm text-[var(--color-text-muted)] space-y-3">
+      <p>
+        El IGV (Impuesto General a las Ventas) es el principal impuesto al consumo en Peru.
+        Actualmente tiene una tasa del 18%, que se compone del 16% de IGV mas el 2% del
+        Impuesto de Promocion Municipal (IPM).
+      </p>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">¿Como se calcula el IGV?</h3>
+      <ul class="list-disc list-inside space-y-1">
+        <li><strong>Agregar IGV:</strong> Monto × 1.18 = Total con IGV</li>
+        <li><strong>Quitar IGV:</strong> Monto ÷ 1.18 = Monto sin IGV</li>
+        <li><strong>Solo el IGV:</strong> Monto × 0.18 = IGV</li>
+      </ul>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">¿Que productos no pagan IGV?</h3>
+      <p>
+        Algunos productos y servicios estan exonerados o inafectos al IGV, como ciertos
+        alimentos basicos, servicios educativos, servicios de salud, y transporte publico
+        de pasajeros. La lista completa esta en la Ley del IGV.
+      </p>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">IGV en facturas y boletas</h3>
+      <p>
+        En las facturas, el IGV debe aparecer separado del monto base. En las boletas de venta,
+        el IGV ya esta incluido en el precio final. Si necesitas deducir gastos, solicita siempre
+        factura para poder utilizar el credito fiscal del IGV.
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const input = document.getElementById('input-monto') as HTMLInputElement;
+  const btnAgregar = document.getElementById('btn-agregar');
+  const btnQuitar = document.getElementById('btn-quitar');
+  const resultadoAgregar = document.getElementById('resultado-agregar');
+  const resultadoQuitar = document.getElementById('resultado-quitar');
+
+  let modo = 'agregar';
+
+  function formatear(n: number) {
+    return `S/ ${n.toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  }
+
+  function calcular() {
+    const monto = parseFloat(input?.value || '0') || 0;
+
+    if (modo === 'agregar') {
+      const igv = monto * 0.18;
+      const total = monto + igv;
+      document.getElementById('res-ag-base')!.textContent = formatear(monto);
+      document.getElementById('res-ag-igv')!.textContent = formatear(igv);
+      document.getElementById('res-ag-total')!.textContent = formatear(total);
+    } else {
+      const base = monto / 1.18;
+      const igv = monto - base;
+      document.getElementById('res-qt-total')!.textContent = formatear(monto);
+      document.getElementById('res-qt-igv')!.textContent = formatear(igv);
+      document.getElementById('res-qt-base')!.textContent = formatear(base);
+    }
+  }
+
+  btnAgregar?.addEventListener('click', () => {
+    modo = 'agregar';
+    btnAgregar.className = 'flex-1 py-3 text-sm font-semibold bg-orange-500 text-white transition-colors';
+    btnQuitar!.className = 'flex-1 py-3 text-sm font-semibold bg-white text-[var(--color-text-muted)] hover:bg-gray-50 transition-colors';
+    resultadoAgregar!.classList.remove('hidden');
+    resultadoQuitar!.classList.add('hidden');
+    calcular();
+  });
+
+  btnQuitar?.addEventListener('click', () => {
+    modo = 'quitar';
+    btnQuitar!.className = 'flex-1 py-3 text-sm font-semibold bg-orange-500 text-white transition-colors';
+    btnAgregar!.className = 'flex-1 py-3 text-sm font-semibold bg-white text-[var(--color-text-muted)] hover:bg-gray-50 transition-colors';
+    resultadoQuitar!.classList.remove('hidden');
+    resultadoAgregar!.classList.add('hidden');
+    calcular();
+  });
+
+  input?.addEventListener('input', calcular);
+
+  function setupCopy(btnId: string, resultId: string) {
+    const btn = document.getElementById(btnId);
+    btn?.addEventListener('click', () => {
+      const text = document.getElementById(resultId)?.textContent || '';
+      navigator.clipboard.writeText(text);
+      const span = btn.querySelector('span');
+      if (span) { span.textContent = 'Copiado'; setTimeout(() => span.textContent = 'Copiar resultado', 2000); }
+    });
+  }
+  setupCopy('copy-ag', 'res-ag-total');
+  setupCopy('copy-qt', 'res-qt-base');
+</script>

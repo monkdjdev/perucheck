@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CalculadoraLiquidacion from '../components/CalculadoraLiquidacion';
+---
+
+<Layout
+  title="Calculadora de Liquidacion Peru 2026"
+  description="Calcula tu liquidacion laboral en Peru. Incluye CTS, gratificacion trunca, vacaciones pendientes e indemnizacion por despido arbitrario."
+  canonical="/calculadora-liquidacion"
+>
+  <div class="mb-6">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-rose-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold">Calculadora de Liquidacion</h1>
+        <p class="text-[var(--color-text-muted)] text-sm mt-0.5">
+          Estima los beneficios que te corresponden al terminar tu relacion laboral.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="space-y-6">
+    <CalculadoraLiquidacion client:load />
+
+    <!-- Contenido SEO -->
+    <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+      <div class="flex items-center gap-2 mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-rose-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="16" x2="12" y2="12" />
+          <line x1="12" y1="8" x2="12.01" y2="8" />
+        </svg>
+        <h2 class="text-lg font-bold">Sobre la liquidacion laboral en Peru</h2>
+      </div>
+      <div class="text-sm text-[var(--color-text-muted)] space-y-3">
+        <p>
+          La liquidacion de beneficios sociales es el pago que recibe un trabajador al terminar
+          su relacion laboral. Incluye todos los beneficios pendientes de pago proporcionales
+          al tiempo trabajado.
+        </p>
+
+        <h3 class="font-semibold text-[var(--color-text)] !mt-4">Componentes de la liquidacion</h3>
+        <ul class="list-disc list-inside space-y-1">
+          <li><strong>CTS trunca:</strong> Compensacion proporcional al ultimo semestre trabajado.</li>
+          <li><strong>Gratificacion trunca:</strong> Proporcional a los meses del semestre en curso.</li>
+          <li><strong>Bonificacion 9%:</strong> Sobre la gratificacion trunca (Ley 30334).</li>
+          <li><strong>Vacaciones truncas:</strong> Proporcional a los meses trabajados sin vacaciones.</li>
+          <li><strong>Indemnizacion:</strong> Solo aplica en caso de despido arbitrario (1.5 sueldos por anio, maximo 12 sueldos).</li>
+        </ul>
+
+        <h3 class="font-semibold text-[var(--color-text)] !mt-4">Plazo de pago</h3>
+        <p>
+          El empleador tiene un plazo de 48 horas despues del cese para pagar la liquidacion.
+          Si no lo hace, genera intereses legales a favor del trabajador.
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

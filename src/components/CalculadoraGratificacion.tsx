@@ -1,4 +1,29 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+
+function CopyButton({ value }: { value: string }) {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(value);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, [value]);
+
+  return (
+    <button onClick={handleCopy} className="mt-3 mx-auto flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/20 hover:bg-white/30 transition-colors text-white text-xs font-medium">
+      {copied ? (
+        <>
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Copiado
+        </>
+      ) : (
+        <>
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copiar resultado
+        </>
+      )}
+    </button>
+  );
+}
 
 export default function CalculadoraGratificacion() {
   const [sueldoBasico, setSueldoBasico] = useState<string>('1130');
@@ -148,6 +173,7 @@ export default function CalculadoraGratificacion() {
               Total a recibir
             </p>
             <p className="text-white text-3xl font-bold">S/ {totalRecibir.toFixed(2)}</p>
+            <CopyButton value={`S/ ${totalRecibir.toFixed(2)}`} />
           </div>
 
           <p className="text-xs text-[var(--color-text-muted)] mt-3 text-center">

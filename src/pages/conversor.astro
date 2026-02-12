@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getTipoCambio } from '../utils/tipoCambioService';
+
+let tipoCambio;
+try {
+  tipoCambio = await getTipoCambio();
+} catch {
+  tipoCambio = { compra: 0, venta: 0, fuente: 'No disponible', fecha: '' };
+}
+---
+
+<Layout
+  title="Conversor de Soles a Dólares - Tipo de Cambio Hoy"
+  description="Convierte soles a dolares y dolares a soles con el tipo de cambio actualizado de SUNAT. Calculadora de conversion rapida y precisa."
+  canonical="/conversor"
+>
+  <!-- Header -->
+  <div class="mb-6">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 16V4m0 0L3 8m4-4l4 4" />
+          <path d="M17 8v12m0 0l4-4m-4 4l-4-4" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold">Conversor de Moneda</h1>
+        <p class="text-[var(--color-text-muted)] text-sm mt-0.5">
+          Convierte soles a dolares y viceversa con el tipo de cambio actual.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TC actual -->
+  <div class="bg-gradient-to-br from-cyan-50 to-sky-50 rounded-2xl border border-cyan-100 p-5 mb-6">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <div>
+        <p class="text-xs font-semibold text-cyan-500 uppercase tracking-wider mb-1">Tipo de cambio hoy</p>
+        <div class="flex items-center gap-4">
+          <div>
+            <p class="text-xs text-[var(--color-text-muted)]">Compra</p>
+            <p class="text-xl font-extrabold text-cyan-700" id="tc-compra">S/ {tipoCambio.compra.toFixed(3)}</p>
+          </div>
+          <div class="w-px h-10 bg-cyan-200"></div>
+          <div>
+            <p class="text-xs text-[var(--color-text-muted)]">Venta</p>
+            <p class="text-xl font-extrabold text-cyan-700" id="tc-venta">S/ {tipoCambio.venta.toFixed(3)}</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <p class="text-xs text-cyan-500">Fuente: {tipoCambio.fuente}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conversor -->
+  <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Soles a Dólares -->
+      <div>
+        <h3 class="font-semibold text-sm mb-3 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-cyan-50 flex items-center justify-center text-xs font-bold text-cyan-600">S/</span>
+          Soles a Dolares
+        </h3>
+        <div class="space-y-3">
+          <div>
+            <label class="text-xs text-[var(--color-text-muted)] mb-1 block">Monto en Soles</label>
+            <input
+              type="number"
+              id="input-soles"
+              placeholder="Ej: 100"
+              min="0"
+              step="0.01"
+              class="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-cyan-200 focus:border-cyan-400 text-lg font-semibold"
+            />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-cyan-50/50 rounded-xl p-3 border border-cyan-100">
+              <p class="text-[10px] text-cyan-500 uppercase font-semibold tracking-wider">Compra</p>
+              <p class="text-lg font-bold text-cyan-700" id="result-soles-compra">$ 0.00</p>
+            </div>
+            <div class="bg-cyan-50/50 rounded-xl p-3 border border-cyan-100">
+              <p class="text-[10px] text-cyan-500 uppercase font-semibold tracking-wider">Venta</p>
+              <p class="text-lg font-bold text-cyan-700" id="result-soles-venta">$ 0.00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Separador -->
+      <div class="hidden md:flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style="display:none;">
+        <div class="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 16V4m0 0L3 8m4-4l4 4" />
+            <path d="M17 8v12m0 0l4-4m-4 4l-4-4" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Dólares a Soles -->
+      <div>
+        <h3 class="font-semibold text-sm mb-3 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center text-xs font-bold text-emerald-600">$</span>
+          Dolares a Soles
+        </h3>
+        <div class="space-y-3">
+          <div>
+            <label class="text-xs text-[var(--color-text-muted)] mb-1 block">Monto en Dolares</label>
+            <input
+              type="number"
+              id="input-dolares"
+              placeholder="Ej: 100"
+              min="0"
+              step="0.01"
+              class="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 text-lg font-semibold"
+            />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-emerald-50/50 rounded-xl p-3 border border-emerald-100">
+              <p class="text-[10px] text-emerald-500 uppercase font-semibold tracking-wider">Compra</p>
+              <p class="text-lg font-bold text-emerald-700" id="result-dolares-compra">S/ 0.00</p>
+            </div>
+            <div class="bg-emerald-50/50 rounded-xl p-3 border border-emerald-100">
+              <p class="text-[10px] text-emerald-500 uppercase font-semibold tracking-wider">Venta</p>
+              <p class="text-lg font-bold text-emerald-700" id="result-dolares-venta">S/ 0.00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Montos rápidos -->
+    <div class="mt-6 pt-5 border-t border-[var(--color-border)]">
+      <p class="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-3">Conversiones rapidas (venta)</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <p class="text-xs text-[var(--color-text-muted)]">$ 1</p>
+          <p class="font-bold text-sm" id="quick-1">S/ {tipoCambio.venta.toFixed(2)}</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <p class="text-xs text-[var(--color-text-muted)]">$ 10</p>
+          <p class="font-bold text-sm" id="quick-10">S/ {(tipoCambio.venta * 10).toFixed(2)}</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <p class="text-xs text-[var(--color-text-muted)]">$ 50</p>
+          <p class="font-bold text-sm" id="quick-50">S/ {(tipoCambio.venta * 50).toFixed(2)}</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center">
+          <p class="text-xs text-[var(--color-text-muted)]">$ 100</p>
+          <p class="font-bold text-sm" id="quick-100">S/ {(tipoCambio.venta * 100).toFixed(2)}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido SEO -->
+  <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6">
+    <div class="flex items-center gap-2 mb-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="16" x2="12" y2="12" />
+        <line x1="12" y1="8" x2="12.01" y2="8" />
+      </svg>
+      <h2 class="text-lg font-bold">Sobre el tipo de cambio en Peru</h2>
+    </div>
+    <div class="text-sm text-[var(--color-text-muted)] space-y-3">
+      <p>
+        El tipo de cambio del dolar en Peru es determinado por la oferta y demanda en el mercado
+        cambiario. La SUNAT publica diariamente el tipo de cambio oficial que se utiliza como
+        referencia para operaciones tributarias y comerciales.
+      </p>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">¿Cual es la diferencia entre compra y venta?</h3>
+      <p>
+        El precio de <strong>compra</strong> es lo que las entidades financieras pagan por tus dolares
+        (cuando vendes dolares). El precio de <strong>venta</strong> es lo que cobran por venderte dolares
+        (cuando compras dolares). La diferencia entre ambos se llama spread.
+      </p>
+
+      <h3 class="font-semibold text-[var(--color-text)] !mt-4">Consejos para cambiar dolares</h3>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Compara tasas entre bancos y casas de cambio digitales.</li>
+        <li>Las casas de cambio digitales suelen ofrecer mejores tasas.</li>
+        <li>Evita cambiar en aeropuertos o zonas turisticas.</li>
+        <li>Verifica que la casa de cambio este registrada en la SBS.</li>
+      </ul>
+    </div>
+  </div>
+</Layout>
+
+<script define:vars={{ compra: tipoCambio.compra, venta: tipoCambio.venta }}>
+  const inputSoles = document.getElementById('input-soles');
+  const inputDolares = document.getElementById('input-dolares');
+
+  inputSoles?.addEventListener('input', () => {
+    const monto = parseFloat(inputSoles.value) || 0;
+    document.getElementById('result-soles-compra').textContent = `$ ${(monto / compra).toFixed(2)}`;
+    document.getElementById('result-soles-venta').textContent = `$ ${(monto / venta).toFixed(2)}`;
+  });
+
+  inputDolares?.addEventListener('input', () => {
+    const monto = parseFloat(inputDolares.value) || 0;
+    document.getElementById('result-dolares-compra').textContent = `S/ ${(monto * compra).toFixed(2)}`;
+    document.getElementById('result-dolares-venta').textContent = `S/ ${(monto * venta).toFixed(2)}`;
+  });
+</script>
