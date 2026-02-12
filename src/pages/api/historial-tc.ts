@@ -1,9 +1,7 @@
 import type { APIRoute } from 'astro';
 
-export const GET: APIRoute = async ({ url: reqUrl }) => {
+export const GET: APIRoute = async () => {
   try {
-    const debug = reqUrl.searchParams.has('debug');
-
     const today = new Date();
     const thirtyDaysAgo = new Date(today.getTime() - 35 * 24 * 60 * 60 * 1000);
     const y1 = thirtyDaysAgo.getFullYear();
@@ -31,20 +29,7 @@ export const GET: APIRoute = async ({ url: reqUrl }) => {
 
     const rawText = await res.text();
 
-    if (debug) {
-      return new Response(JSON.stringify({
-        length: rawText.length,
-        first100: rawText.slice(0, 100),
-        last100: rawText.slice(-100),
-        contentType: res.headers.get('content-type'),
-        status: res.status,
-      }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    // Clean and extract JSON
+    // Clean and extract JSON - BCRP returns text/html content-type
     const cleaned = rawText.replace(/^\uFEFF/, '').trim();
     const start = cleaned.indexOf('{');
     const end = cleaned.lastIndexOf('}');
