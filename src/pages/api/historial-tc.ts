@@ -24,7 +24,19 @@ export const GET: APIRoute = async () => {
       });
     }
 
-    const json = await res.json();
+    // Use text() and clean before parsing - BCRP sometimes returns BOM or extra chars
+    let rawText = await res.text();
+    rawText = rawText.replace(/^\uFEFF/, '').trim();
+    // Extract only the JSON object (from first { to last })
+    const start = rawText.indexOf('{');
+    const end = rawText.lastIndexOf('}');
+    if (start === -1 || end === -1) {
+      return new Response(JSON.stringify({ error: 'Invalid BCRP response format' }), {
+        status: 502,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    const json = JSON.parse(rawText.slice(start, end + 1));
     if (!json.periods) {
       return new Response(JSON.stringify({ error: 'No periods in BCRP response' }), {
         status: 502,
