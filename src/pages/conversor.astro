@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getTipoCambio } from '../utils/tipoCambioService';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
 let tipoCambio;
 try {
@@ -15,10 +16,12 @@ try {
   description="Convierte soles a dolares y dolares a soles con el tipo de cambio actualizado de SUNAT. Calculadora de conversion rapida y precisa."
   canonical="/conversor"
 >
+  <Breadcrumb items={[{ label: 'Conversor Soles/Dolares', href: '/conversor' }]} />
+
   <!-- Header -->
   <div class="mb-6">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center">
+      <div class="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M7 16V4m0 0L3 8m4-4l4 4" />
           <path d="M17 8v12m0 0l4-4m-4 4l-4-4" />

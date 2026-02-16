@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import TipoCambioWidget from '../components/TipoCambioWidget';
 import PicoPlacaWidget from '../components/PicoPlacaWidget';
 import { getTipoCambio } from '../utils/tipoCambioService';
+import { obtenerPicoPlacaHoy } from '../utils/picoPlaca';
+import { UIT, RMV } from '../utils/constants';
 
 // Obtener tipo de cambio real desde el servidor
 let tipoCambio;
@@ -19,17 +21,10 @@ const fecha = new Date().toLocaleDateString('es-PE', {
   day: 'numeric',
 });
 
-// Pico y placa
-const RESTRICCIONES: Record<number, number[]> = {
-  1: [1, 2],
-  2: [3, 4],
-  3: [5, 6],
-  4: [7, 8],
-  5: [9, 0],
-};
-const diaHoy = new Date().getDay();
-const esFinDeSemana = diaHoy === 0 || diaHoy === 6;
-const placasHoy = RESTRICCIONES[diaHoy] || [];
+// Pico y placa — usar utilidad centralizada
+const picoPlacaHoy = obtenerPicoPlacaHoy();
+const esFinDeSemana = picoPlacaHoy.esFinDeSemana;
+const placasHoy = picoPlacaHoy.placasRestringidas;
 
 const tcTexto = tipoCambio.compra > 0
   ? `S/ ${tipoCambio.compra.toFixed(3)} / S/ ${tipoCambio.venta.toFixed(3)}`
@@ -111,7 +106,7 @@ const initialTcData = {
           </svg>
         </div>
       </div>
-      <p class="text-lg font-bold text-emerald-700">S/ 5,500</p>
+      <p class="text-lg font-bold text-emerald-700">S/ {UIT.toLocaleString('es-PE')}</p>
       <p class="text-xs text-[var(--color-text-muted)] mt-1">Unidad Impositiva Tributaria</p>
     </div>
 
@@ -126,7 +121,7 @@ const initialTcData = {
           </svg>
         </div>
       </div>
-      <p class="text-lg font-bold text-violet-700">S/ 1,130</p>
+      <p class="text-lg font-bold text-violet-700">S/ {RMV.toLocaleString('es-PE')}</p>
       <p class="text-xs text-[var(--color-text-muted)] mt-1">Remuneracion Minima Vital</p>
     </a>
   </div>
@@ -134,7 +129,7 @@ const initialTcData = {
   <!-- Widgets principales -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
     <TipoCambioWidget client:load initialData={initialTcData} />
-    <PicoPlacaWidget client:load />
+    <PicoPlacaWidget client:visible />
   </div>
 
   <!-- Seccion de herramientas -->

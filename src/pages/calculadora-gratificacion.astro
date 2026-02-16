@@ -1,16 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CalculadoraGratificacion from '../components/CalculadoraGratificacion';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://perucheck.com';
+const toolSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Calculadora Gratificacion Peru 2026",
+  "url": `${siteUrl}/calculadora-gratificacion`,
+  "description": "Calcula tu gratificacion de julio y diciembre 2026 Peru. Incluye bonificacion extraordinaria del 9% Ley 30334.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PEN" },
+};
 ---
 
 <Layout
-  title="Calculadora Gratificacion 2025"
-  description="Calcula tu gratificacion de julio y diciembre 2025. Incluye bonificacion extraordinaria del 9% (Ley 30334). Ingresa tu sueldo y conoce cuanto recibiras."
+  title="Calculadora Gratificacion 2026"
+  description="Calcula tu gratificacion de julio y diciembre 2026. Incluye bonificacion extraordinaria del 9% (Ley 30334). Ingresa tu sueldo y conoce cuanto recibiras."
   canonical="/calculadora-gratificacion"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(toolSchema)} />
+
+  <Breadcrumb items={[{ label: 'Calculadora Gratificacion', href: '/calculadora-gratificacion' }]} />
+
   <div class="mb-6">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center">
+      <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4" />
           <path d="M4 6v12c0 1.1.9 2 2 2h14v-4" />
@@ -18,7 +35,7 @@ import CalculadoraGratificacion from '../components/CalculadoraGratificacion';
         </svg>
       </div>
       <div>
-        <h1 class="text-2xl font-bold">Calculadora de Gratificacion 2025</h1>
+        <h1 class="text-2xl font-bold">Calculadora de Gratificacion 2026</h1>
         <p class="text-[var(--color-text-muted)] text-sm mt-0.5">
           Calcula tu gratificacion de julio o diciembre con la bonificacion extraordinaria incluida.
         </p>

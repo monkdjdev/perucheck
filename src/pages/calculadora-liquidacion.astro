@@ -1,6 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CalculadoraLiquidacion from '../components/CalculadoraLiquidacion';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://perucheck.com';
+const toolSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Calculadora Liquidacion Laboral Peru 2026",
+  "url": `${siteUrl}/calculadora-liquidacion`,
+  "description": "Calcula tu liquidacion laboral en Peru 2026. Incluye CTS, gratificacion trunca, vacaciones pendientes e indemnizacion por despido arbitrario.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PEN" },
+};
 ---
 
 <Layout
@@ -8,9 +21,13 @@ import CalculadoraLiquidacion from '../components/CalculadoraLiquidacion';
   description="Calcula tu liquidacion laboral en Peru. Incluye CTS, gratificacion trunca, vacaciones pendientes e indemnizacion por despido arbitrario."
   canonical="/calculadora-liquidacion"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(toolSchema)} />
+
+  <Breadcrumb items={[{ label: 'Calculadora Liquidacion', href: '/calculadora-liquidacion' }]} />
+
   <div class="mb-6">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center">
+      <div class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-rose-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
           <polyline points="14 2 14 8 20 8" />

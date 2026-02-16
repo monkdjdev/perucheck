@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { RMV, ASIGNACION_FAMILIAR, BONIFICACION_EXTRAORDINARIA } from '../utils/constants';
 
 function CopyButton({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
@@ -9,15 +10,19 @@ function CopyButton({ value }: { value: string }) {
   }, [value]);
 
   return (
-    <button onClick={handleCopy} className="mt-3 mx-auto flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/20 hover:bg-white/30 transition-colors text-white text-xs font-medium">
+    <button
+      onClick={handleCopy}
+      aria-label={copied ? 'Resultado copiado' : 'Copiar total al portapapeles'}
+      className="mt-3 mx-auto flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/20 hover:bg-white/30 transition-colors text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-white/50"
+    >
       {copied ? (
         <>
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
           Copiado
         </>
       ) : (
         <>
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copiar total
         </>
       )}
@@ -26,14 +31,15 @@ function CopyButton({ value }: { value: string }) {
 }
 
 export default function CalculadoraLiquidacion() {
-  const [sueldoBasico, setSueldoBasico] = useState<string>('1130');
+  const [sueldoBasico, setSueldoBasico] = useState<string>(String(RMV));
   const [asignacionFamiliar, setAsignacionFamiliar] = useState<boolean>(false);
   const [mesesTrabajados, setMesesTrabajados] = useState<string>('12');
   const [diasVacaciones, setDiasVacaciones] = useState<string>('0');
   const [motivoCese, setMotivoCese] = useState<string>('renuncia');
+  const [error, setError] = useState<string>('');
 
   const sueldo = parseFloat(sueldoBasico) || 0;
-  const af = asignacionFamiliar ? 113 : 0;
+  const af = asignacionFamiliar ? ASIGNACION_FAMILIAR : 0;
   const remuneracion = sueldo + af;
   const meses = parseInt(mesesTrabajados) || 0;
   const diasVac = parseInt(diasVacaciones) || 0;
@@ -46,7 +52,7 @@ export default function CalculadoraLiquidacion() {
   // Gratificación trunca: (rem / 6) * mesesSemestre
   const mesesSemestre = meses > 6 ? 6 : meses;
   const gratTrunca = (remuneracion / 6) * mesesSemestre;
-  const bonificacion9 = gratTrunca * 0.09;
+  const bonificacion9 = gratTrunca * BONIFICACION_EXTRAORDINARIA;
 
   // Vacaciones truncas: (rem / 12) * meses + días pendientes
   const vacTruncas = (remuneracion / 12) * meses;
@@ -61,10 +67,20 @@ export default function CalculadoraLiquidacion() {
 
   const totalLiquidacion = cts + gratTrunca + bonificacion9 + vacTruncas + vacPendientes + indemnizacion;
 
+  function handleSueldo(value: string) {
+    setSueldoBasico(value);
+    const num = parseFloat(value);
+    if (value && (isNaN(num) || num <= 0)) {
+      setError('El sueldo debe ser mayor a cero.');
+    } else {
+      setError('');
+    }
+  }
+
   return (
     <div className="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
       <div className="flex items-center gap-2 mb-6">
-        <div className="w-8 h-8 rounded-lg bg-rose-50 flex items-center justify-center">
+        <div className="w-8 h-8 rounded-lg bg-rose-50 flex items-center justify-center" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-rose-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
             <polyline points="14 2 14 8 20 8" />
@@ -79,14 +95,23 @@ export default function CalculadoraLiquidacion() {
         {/* Formulario */}
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-1.5">Sueldo basico mensual (S/)</label>
+            <label htmlFor="liq-sueldo" className="block text-sm font-medium mb-1.5">Sueldo basico mensual (S/)</label>
             <input
+              id="liq-sueldo"
               type="number"
               value={sueldoBasico}
-              onChange={e => setSueldoBasico(e.target.value)}
-              className="w-full px-4 py-2.5 border border-[var(--color-border)] rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-200 text-lg"
-              min="0"
+              onChange={e => handleSueldo(e.target.value)}
+              className={`w-full px-4 py-2.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-200 text-lg ${error ? 'border-red-400 bg-red-50' : 'border-[var(--color-border)]'}`}
+              min="1"
+              aria-describedby={error ? 'liq-sueldo-error' : undefined}
+              aria-invalid={!!error}
             />
+            {error && (
+              <p id="liq-sueldo-error" role="alert" className="text-xs text-red-600 mt-1 flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                {error}
+              </p>
+            )}
           </div>
 
           <div className="flex items-center gap-3 p-3 bg-[var(--color-surface-alt)] rounded-xl">
@@ -98,13 +123,14 @@ export default function CalculadoraLiquidacion() {
               className="w-4 h-4 rounded border-gray-300 text-rose-500 focus:ring-rose-300"
             />
             <label htmlFor="af-liq" className="text-sm">
-              Recibo asignacion familiar (S/ 113.00)
+              Recibo asignacion familiar (S/ {ASIGNACION_FAMILIAR.toFixed(2)})
             </label>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1.5">Meses trabajados en ultimo semestre</label>
+            <label htmlFor="liq-meses" className="block text-sm font-medium mb-1.5">Meses trabajados en ultimo semestre</label>
             <select
+              id="liq-meses"
               value={mesesTrabajados}
               onChange={e => setMesesTrabajados(e.target.value)}
               className="w-full px-4 py-2.5 border border-[var(--color-border)] rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-200 bg-white"
@@ -116,8 +142,9 @@ export default function CalculadoraLiquidacion() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1.5">Dias de vacaciones pendientes</label>
+            <label htmlFor="liq-vacaciones" className="block text-sm font-medium mb-1.5">Dias de vacaciones pendientes</label>
             <input
+              id="liq-vacaciones"
               type="number"
               value={diasVacaciones}
               onChange={e => setDiasVacaciones(e.target.value)}
@@ -128,8 +155,9 @@ export default function CalculadoraLiquidacion() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1.5">Motivo de cese</label>
+            <label htmlFor="liq-motivo" className="block text-sm font-medium mb-1.5">Motivo de cese</label>
             <select
+              id="liq-motivo"
               value={motivoCese}
               onChange={e => setMotivoCese(e.target.value)}
               className="w-full px-4 py-2.5 border border-[var(--color-border)] rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-200 bg-white"
@@ -142,9 +170,9 @@ export default function CalculadoraLiquidacion() {
         </div>
 
         {/* Resultado */}
-        <div className="bg-gradient-to-br from-slate-50 to-rose-50/50 rounded-2xl p-6 border border-slate-100">
+        <div className="bg-gradient-to-br from-slate-50 to-rose-50/50 rounded-2xl p-6 border border-slate-100" aria-live="polite" aria-label="Resultado del calculo de liquidacion">
           <h3 className="text-sm font-semibold text-[var(--color-text-muted)] mb-4 flex items-center gap-1.5">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
             </svg>
             Detalle de la liquidacion
@@ -160,7 +188,7 @@ export default function CalculadoraLiquidacion() {
               <span className="font-mono">S/ {gratTrunca.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[var(--color-text-muted)]">Bonificacion 9%</span>
+              <span className="text-[var(--color-text-muted)]">Bonificacion {(BONIFICACION_EXTRAORDINARIA * 100).toFixed(0)}%</span>
               <span className="font-mono text-emerald-600">+ S/ {bonificacion9.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
@@ -183,13 +211,13 @@ export default function CalculadoraLiquidacion() {
 
           <div className="mt-6 p-5 gradient-danger rounded-2xl text-center shadow-lg shadow-rose-100/50">
             <p className="text-white/80 text-xs mb-1 flex items-center justify-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
               </svg>
               Total liquidacion aproximada
             </p>
-            <p className="text-white text-3xl font-bold">S/ {totalLiquidacion.toFixed(2)}</p>
+            <p className="text-white text-3xl font-bold" aria-label={`Total liquidacion aproximada: S/ ${totalLiquidacion.toFixed(2)}`}>S/ {totalLiquidacion.toFixed(2)}</p>
             <CopyButton value={`S/ ${totalLiquidacion.toFixed(2)}`} />
           </div>
 

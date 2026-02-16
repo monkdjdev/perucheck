@@ -10,6 +10,12 @@
  * 6. Ultimo valor conocido como respaldo final
  */
 
+const isDev = process.env.NODE_ENV === 'development';
+const log = {
+  info: (...args: unknown[]) => { if (isDev) console.log(...args); },
+  warn: (...args: unknown[]) => { if (isDev) console.warn(...args); },
+};
+
 export interface TipoCambioData {
   compra: number;
   venta: number;
@@ -45,7 +51,7 @@ async function fetchFromApisNetPe(): Promise<TipoCambioData | null> {
     });
 
     if (!res.ok) {
-      console.warn(`[TipoCambio] apis.net.pe respondio ${res.status}`);
+      log.warn(`[TipoCambio] apis.net.pe respondio ${res.status}`);
       return null;
     }
 
@@ -64,7 +70,7 @@ async function fetchFromApisNetPe(): Promise<TipoCambioData | null> {
       actualizadoEn: new Date().toISOString(),
     };
   } catch (error) {
-    console.warn('[TipoCambio] Error con apis.net.pe:', error);
+    log.warn('[TipoCambio] Error con apis.net.pe:', error);
     return null;
   }
 }
@@ -80,7 +86,7 @@ async function fetchFromSunatTxt(): Promise<TipoCambioData | null> {
     });
 
     if (!res.ok) {
-      console.warn(`[TipoCambio] SUNAT TXT respondio ${res.status}`);
+      log.warn(`[TipoCambio] SUNAT TXT respondio ${res.status}`);
       return null;
     }
 
@@ -109,7 +115,7 @@ async function fetchFromSunatTxt(): Promise<TipoCambioData | null> {
       actualizadoEn: new Date().toISOString(),
     };
   } catch (error) {
-    console.warn('[TipoCambio] Error con SUNAT TXT:', error);
+    log.warn('[TipoCambio] Error con SUNAT TXT:', error);
     return null;
   }
 }
@@ -130,7 +136,7 @@ async function fetchFromBCRP(): Promise<TipoCambioData | null> {
     });
 
     if (!res.ok) {
-      console.warn(`[TipoCambio] BCRP respondio ${res.status}`);
+      log.warn(`[TipoCambio] BCRP respondio ${res.status}`);
       return null;
     }
 
@@ -181,7 +187,7 @@ async function fetchFromBCRP(): Promise<TipoCambioData | null> {
       actualizadoEn: new Date().toISOString(),
     };
   } catch (error) {
-    console.warn('[TipoCambio] Error con BCRP:', error);
+    log.warn('[TipoCambio] Error con BCRP:', error);
     return null;
   }
 }
@@ -194,7 +200,7 @@ async function fetchFromEApi(): Promise<TipoCambioData | null> {
     });
 
     if (!res.ok) {
-      console.warn(`[TipoCambio] eApi respondio ${res.status}`);
+      log.warn(`[TipoCambio] eApi respondio ${res.status}`);
       return null;
     }
 
@@ -213,7 +219,7 @@ async function fetchFromEApi(): Promise<TipoCambioData | null> {
       actualizadoEn: new Date().toISOString(),
     };
   } catch (error) {
-    console.warn('[TipoCambio] Error con eApi:', error);
+    log.warn('[TipoCambio] Error con eApi:', error);
     return null;
   }
 }
@@ -228,14 +234,14 @@ function updateFallback(data: TipoCambioData): void {
 export async function getTipoCambio(): Promise<TipoCambioData> {
   // 1. Verificar cache
   if (isCacheValid() && cachedData) {
-    console.log('[TipoCambio] Usando cache en memoria');
+    log.info('[TipoCambio] Usando cache en memoria');
     return cachedData;
   }
 
   // 2. apis.net.pe
   const apisData = await fetchFromApisNetPe();
   if (apisData) {
-    console.log('[TipoCambio] Datos obtenidos de apis.net.pe');
+    log.info('[TipoCambio] Datos obtenidos de apis.net.pe');
     cachedData = apisData;
     cacheTimestamp = Date.now();
     updateFallback(apisData);
@@ -245,7 +251,7 @@ export async function getTipoCambio(): Promise<TipoCambioData> {
   // 3. SUNAT TXT directo
   const sunatData = await fetchFromSunatTxt();
   if (sunatData) {
-    console.log('[TipoCambio] Datos obtenidos de SUNAT TXT');
+    log.info('[TipoCambio] Datos obtenidos de SUNAT TXT');
     cachedData = sunatData;
     cacheTimestamp = Date.now();
     updateFallback(sunatData);
@@ -255,7 +261,7 @@ export async function getTipoCambio(): Promise<TipoCambioData> {
   // 4. BCRP API
   const bcrpData = await fetchFromBCRP();
   if (bcrpData) {
-    console.log('[TipoCambio] Datos obtenidos de BCRP');
+    log.info('[TipoCambio] Datos obtenidos de BCRP');
     cachedData = bcrpData;
     cacheTimestamp = Date.now();
     updateFallback(bcrpData);
@@ -265,7 +271,7 @@ export async function getTipoCambio(): Promise<TipoCambioData> {
   // 5. eApi Peru
   const eapiData = await fetchFromEApi();
   if (eapiData) {
-    console.log('[TipoCambio] Datos obtenidos de eApi');
+    log.info('[TipoCambio] Datos obtenidos de eApi');
     cachedData = eapiData;
     cacheTimestamp = Date.now();
     updateFallback(eapiData);
@@ -273,7 +279,7 @@ export async function getTipoCambio(): Promise<TipoCambioData> {
   }
 
   // 6. Usar ultimo valor conocido
-  console.warn('[TipoCambio] Usando datos de respaldo');
+  log.warn('[TipoCambio] Usando datos de respaldo');
   if (cachedData) return cachedData;
   return { ...FALLBACK_DATA, actualizadoEn: new Date().toISOString() };
 }

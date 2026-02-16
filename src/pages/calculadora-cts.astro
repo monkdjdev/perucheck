@@ -1,23 +1,40 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CalculadoraCTS from '../components/CalculadoraCTS';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://perucheck.com';
+const toolSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Calculadora CTS Peru 2026",
+  "url": `${siteUrl}/calculadora-cts`,
+  "description": "Calcula tu CTS (Compensacion por Tiempo de Servicios) Peru 2026. Ingresa tu sueldo y conoce cuanto te corresponde de deposito semestral.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PEN" },
+};
 ---
 
 <Layout
-  title="Calculadora CTS 2025"
-  description="Calcula tu CTS (Compensacion por Tiempo de Servicios) 2025. Ingresa tu sueldo y conoce cuanto te corresponde de deposito semestral en mayo y noviembre."
+  title="Calculadora CTS 2026"
+  description="Calcula tu CTS (Compensacion por Tiempo de Servicios) 2026. Ingresa tu sueldo y conoce cuanto te corresponde de deposito semestral en mayo y noviembre."
   canonical="/calculadora-cts"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(toolSchema)} />
+
+  <Breadcrumb items={[{ label: 'Calculadora CTS', href: '/calculadora-cts' }]} />
+
   <div class="mb-6">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
+      <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
           <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
         </svg>
       </div>
       <div>
-        <h1 class="text-2xl font-bold">Calculadora CTS 2025</h1>
+        <h1 class="text-2xl font-bold">Calculadora CTS 2026</h1>
         <p class="text-[var(--color-text-muted)] text-sm mt-0.5">
           Calcula tu Compensacion por Tiempo de Servicios de forma rapida y sencilla.
         </p>

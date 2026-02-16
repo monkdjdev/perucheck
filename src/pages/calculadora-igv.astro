@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const IGV = 0.18;
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { IGV } from '../utils/constants';
 ---
 
 <Layout
@@ -9,10 +9,12 @@ const IGV = 0.18;
   description="Calcula el IGV (18%) de cualquier monto. Agrega o quita el IGV facilmente. Herramienta rapida para calcular impuestos en Peru."
   canonical="/calculadora-igv"
 >
+  <Breadcrumb items={[{ label: 'Calculadora IGV', href: '/calculadora-igv' }]} />
+
   <!-- Header -->
   <div class="mb-6">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center">
+      <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="4" y="2" width="16" height="20" rx="2" />
           <line x1="8" y1="6" x2="16" y2="6" />

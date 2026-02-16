@@ -1,0 +1,53 @@
+---
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+const siteUrl = 'https://perucheck.com';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteUrl },
+    ...items.map((item, i) => ({
+      "@type": "ListItem",
+      "position": i + 2,
+      "name": item.label,
+      ...(item.href ? { "item": `${siteUrl}${item.href}` } : {}),
+    })),
+  ],
+};
+---
+
+<nav aria-label="Ruta de navegacion" class="mb-4">
+  <ol class="flex items-center gap-1.5 text-sm text-[var(--color-text-muted)] flex-wrap">
+    <li>
+      <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Inicio</a>
+    </li>
+    {items.map((item, i) => (
+      <>
+        <li aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </li>
+        <li>
+          {item.href && i < items.length - 1 ? (
+            <a href={item.href} class="hover:text-[var(--color-primary)] transition-colors">{item.label}</a>
+          ) : (
+            <span class="text-[var(--color-text)] font-medium" aria-current="page">{item.label}</span>
+          )}
+        </li>
+      </>
+    ))}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

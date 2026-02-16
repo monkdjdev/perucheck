@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
 const feriados = [
   { fecha: '2026-01-01', nombre: 'Año Nuevo', dia: 'Jueves' },
@@ -80,10 +81,12 @@ function getDia(fecha: string) {
   description="Calendario completo de feriados 2026 en Peru. Conoce los 16 feriados nacionales, fechas, dias de la semana y fines de semana largos. Planifica tu año."
   canonical="/feriados"
 >
+  <Breadcrumb items={[{ label: 'Feriados 2026', href: '/feriados' }]} />
+
   <!-- Header -->
   <div class="mb-6">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center">
+      <div class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-rose-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
           <line x1="16" y1="2" x2="16" y2="6" />

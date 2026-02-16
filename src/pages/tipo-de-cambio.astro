@@ -4,6 +4,7 @@ import TipoCambioWidget from '../components/TipoCambioWidget';
 import ComparadorBancos from '../components/ComparadorBancos';
 import HistorialTC from '../components/HistorialTC';
 import { getTipoCambio } from '../utils/tipoCambioService';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
 // Obtener tipo de cambio real desde el servidor
 let tipoCambio;
@@ -26,9 +27,11 @@ const initialTcData = {
   description="Tipo de cambio del dolar hoy en Peru. Compara tasas de SUNAT, BCP, Interbank, BBVA, Rextie y Kambista. Convertidor de dolares a soles en tiempo real."
   canonical="/tipo-de-cambio"
 >
+  <Breadcrumb items={[{ label: 'Tipo de Cambio', href: '/tipo-de-cambio' }]} />
+
   <div class="mb-6">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center">
+      <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="12" y1="1" x2="12" y2="23" />
           <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
@@ -45,8 +48,8 @@ const initialTcData = {
 
   <div class="space-y-6">
     <TipoCambioWidget client:load initialData={initialTcData} />
-    <ComparadorBancos client:load initialCompra={tipoCambio.compra} initialVenta={tipoCambio.venta} />
-    <HistorialTC client:load />
+    <ComparadorBancos client:visible initialCompra={tipoCambio.compra} initialVenta={tipoCambio.venta} />
+    <HistorialTC client:visible />
 
     <!-- Contenido SEO -->
     <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">

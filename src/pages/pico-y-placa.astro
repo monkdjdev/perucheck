@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import PicoPlacaWidget from '../components/PicoPlacaWidget';
 import PicoPlacaSemana from '../components/PicoPlacaSemana.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 ---
 
 <Layout
@@ -9,9 +10,11 @@ import PicoPlacaSemana from '../components/PicoPlacaSemana.astro';
   description="Consulta el pico y placa de hoy en Lima Metropolitana. Verifica si tu vehiculo puede circular segun el ultimo digito de tu placa. Horarios y calendario semanal."
   canonical="/pico-y-placa"
 >
+  <Breadcrumb items={[{ label: 'Pico y Placa Lima', href: '/pico-y-placa' }]} />
+
   <div class="mb-6">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center">
+      <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10l-2-4H8L6 10l-2.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2" />
           <circle cx="7" cy="17" r="2" />
@@ -28,7 +31,7 @@ import PicoPlacaSemana from '../components/PicoPlacaSemana.astro';
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-    <PicoPlacaWidget client:load />
+    <PicoPlacaWidget client:visible />
     <PicoPlacaSemana />
   </div>
 
