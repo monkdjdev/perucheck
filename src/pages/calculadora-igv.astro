@@ -188,6 +188,84 @@ import { IGV } from '../utils/constants';
       </p>
     </div>
   </div>
+
+  <!-- FAQ -->
+  <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 mt-0 hover:shadow-sm transition-shadow">
+    <div class="flex items-center gap-2 mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+        <line x1="12" y1="17" x2="12.01" y2="17" />
+      </svg>
+      <h2 class="text-lg font-bold">Preguntas frecuentes sobre el IGV</h2>
+    </div>
+    <div class="space-y-4 text-sm text-[var(--color-text-muted)]">
+
+      <div class="border-b border-[var(--color-border)] pb-4">
+        <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Por que el IGV es 18% y no otro valor?</h3>
+        <p>
+          El 18% se compone de dos partes: 16% corresponde al IGV propiamente dicho (Impuesto General
+          a las Ventas) y 2% al IPM (Impuesto de Promocion Municipal), que va a los municipios. Ambos
+          se calculan juntos y se denominan coloquialmente "IGV". Esta tasa esta vigente desde 2011
+          y no ha cambiado desde entonces.
+        </p>
+      </div>
+
+      <div class="border-b border-[var(--color-border)] pb-4">
+        <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Que productos y servicios estan exonerados del IGV?</h3>
+        <p>
+          El Apendice I de la Ley del IGV lista los productos exonerados, entre los que destacan:
+          frutas, verduras y carnes frescas; libros y revistas; algunos medicamentos; servicios
+          de transporte de carga por carretera; arrendamiento de inmuebles habitacionales (bajo
+          ciertos montos); y servicios prestados a zonas francas como ZOFRATACNA. La lista completa
+          se actualiza periodicamente por decreto supremo.
+        </p>
+      </div>
+
+      <div class="border-b border-[var(--color-border)] pb-4">
+        <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Cual es la diferencia entre exonerado e inafecto al IGV?</h3>
+        <p>
+          Exonerado significa que el bien o servicio esta temporalmente fuera del alcance del IGV
+          (la exoneracion tiene plazo de vencimiento). Inafecto significa que por su propia naturaleza
+          nunca ha estado sujeto al IGV (por ejemplo, la exportacion de bienes). La diferencia practica
+          es que las operaciones inafectas nunca generan IGV, mientras que las exoneradas podrian
+          volver a estar gravadas si vence la exoneracion.
+        </p>
+      </div>
+
+      <div class="border-b border-[var(--color-border)] pb-4">
+        <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Como funciona el credito fiscal del IGV?</h3>
+        <p>
+          Si eres empresa o negocio con RUC, el IGV que pagas en tus compras (IGV de compras) puedes
+          usarlo como credito contra el IGV que cobras en tus ventas (IGV de ventas). Solo pagas a
+          SUNAT la diferencia. Por eso es importante solicitar facturas en las compras de tu negocio:
+          la boleta de venta no otorga credito fiscal.
+        </p>
+      </div>
+
+      <div class="border-b border-[var(--color-border)] pb-4">
+        <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Tengo que pagar IGV si soy persona natural sin negocio?</h3>
+        <p>
+          Si compras bienes o servicios gravados, el IGV ya esta incluido en el precio y lo pagas
+          automaticamente (eres el consumidor final). Solo debes declarar y pagar IGV a SUNAT si
+          realizas actividades empresariales: vendes bienes o prestas servicios de forma habitual
+          y estas inscrito en el RUC como negocio. Las personas naturales que no tienen RUC
+          de negocio no declaran IGV.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Hay algun regimen especial con menor tasa de IGV?</h3>
+        <p>
+          Si, existen regimenes especiales como el RUS (Regimen Unico Simplificado) para pequenos
+          negocios, donde se paga una cuota fija mensual que incluye el IGV y el Impuesto a la Renta,
+          sin necesidad de calcularlos por separado. Sin embargo, en ese regimen solo puedes emitir
+          boletas, no facturas, por lo que tus clientes no pueden usar credito fiscal.
+        </p>
+      </div>
+
+    </div>
+  </div>
 </Layout>
 
 <script>

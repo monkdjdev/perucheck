@@ -1,0 +1,315 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://perucheck.com';
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "PeruCheck",
+  "url": siteUrl,
+  "description": "Panel de informacion diaria con tipo de cambio, pico y placa, calculadoras laborales y herramientas utiles para peruanos.",
+  "foundingDate": "2025",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "jhoseppp@gmail.com",
+    "contactType": "customer support",
+    "availableLanguage": "Spanish"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lima",
+    "addressCountry": "PE"
+  }
+};
+---
+
+<Layout
+  title="Acerca de PeruCheck"
+  description="Conoce PeruCheck: quienes somos, nuestra mision y como ayudamos a los peruanos con informacion laboral, financiera y cotidiana actualizada."
+  canonical="/acerca-de"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+
+  <Breadcrumb items={[{ label: 'Acerca de', href: '/acerca-de' }]} />
+
+  <div class="max-w-3xl mx-auto">
+    <!-- Header -->
+    <div class="flex items-center gap-3 mb-8">
+      <div class="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-lg shadow-indigo-200/50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 11l3 3L22 4" />
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold">Acerca de PeruCheck</h1>
+        <p class="text-[var(--color-text-muted)] text-sm mt-0.5">Informacion util para el dia a dia en Peru</p>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+
+      <!-- Mision -->
+      <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-lg font-bold mb-3">Nuestra mision</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          PeruCheck nace con una mision clara: poner a disposicion de todos los peruanos la informacion
+          que necesitan en su dia a dia, de forma rapida, confiable y sin complicaciones. Sabemos que
+          consultar el tipo de cambio, verificar si tu vehiculo tiene restriccion de pico y placa, o
+          calcular cuanto te corresponde de CTS puede ser tedioso si tienes que ir a multiples fuentes
+          o hacer calculos manuales. Por eso reunimos todo en un solo lugar.
+        </p>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
+          Creemos que el acceso a la informacion financiera y laboral no debe ser privilegio de quienes
+          tienen asesores o conocimientos especializados. Nuestras herramientas son gratuitas, faciles
+          de usar y estan disenadas para que cualquier persona, independientemente de su nivel de
+          conocimiento, pueda obtener la informacion que necesita en segundos.
+        </p>
+      </div>
+
+      <!-- Que ofrecemos -->
+      <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-lg font-bold mb-4">Que encontraras en PeruCheck</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center shrink-0 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Tipo de cambio en tiempo real</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-0.5">Compra y venta del dolar en SUNAT, SBS y casas de cambio digitales, actualizado varios veces al dia.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center shrink-0 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10l-2-4H8L6 10l-2.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2" />
+                <circle cx="7" cy="17" r="2" />
+                <circle cx="17" cy="17" r="2" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Pico y placa Lima</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-0.5">Consulta que numeros de placa tienen restriccion hoy en Lima Metropolitana, con informacion por hora.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Calculadora CTS</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-0.5">Calcula tu Compensacion por Tiempo de Servicios semestral considerando sueldo, asignacion familiar y gratificacion.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4" />
+                <path d="M4 6v12c0 1.1.9 2 2 2h14v-4" />
+                <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Calculadora de Gratificacion</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-0.5">Estima tu gratificacion de julio o diciembre, con la bonificacion extraordinaria del 9% incluida (Ley 30334).</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-rose-50 flex items-center justify-center shrink-0 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-rose-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Calculadora de Liquidacion</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-0.5">Calcula los beneficios que te corresponden al terminar una relacion laboral: CTS, vacaciones, gratificacion e indemnizacion.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center shrink-0 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-orange-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="2" width="16" height="20" rx="2" />
+                <line x1="8" y1="6" x2="16" y2="6" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Calculadora de IGV</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-0.5">Agrega o quita el IGV (18%) de cualquier monto de forma inmediata, con tabla de referencia rapida.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-rose-50 flex items-center justify-center shrink-0 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-rose-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Feriados 2026</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-0.5">Calendario completo de feriados nacionales, con conteo regresivo al proximo feriado y fines de semana largos.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-cyan-50 flex items-center justify-center shrink-0 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 16V4m0 0L3 8m4-4l4 4" />
+                <path d="M17 8v12m0 0l4-4m-4 4l-4-4" />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Conversor Soles / Dolares</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-0.5">Convierte entre soles y dolares usando el tipo de cambio oficial del dia de forma instantanea.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Fuentes de datos -->
+      <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-lg font-bold mb-3">Fuentes de datos y precision</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
+          En PeruCheck nos tomamos muy en serio la precision de la informacion. Para cada herramienta
+          usamos fuentes oficiales o de reconocida confianza:
+        </p>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] mt-2 shrink-0"></div>
+            <div>
+              <p class="text-sm font-medium">Tipo de cambio</p>
+              <p class="text-xs text-[var(--color-text-muted)]">Datos del Banco Central de Reserva del Peru (BCRP) y la Superintendencia de Banca y Seguros (SBS), actualizados en tiempo real durante el horario bancario.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] mt-2 shrink-0"></div>
+            <div>
+              <p class="text-sm font-medium">Pico y placa</p>
+              <p class="text-xs text-[var(--color-text-muted)]">Basado en la ordenanza vigente de la Municipalidad Metropolitana de Lima, con las restricciones actualizadas del sistema de transporte de Lima.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] mt-2 shrink-0"></div>
+            <div>
+              <p class="text-sm font-medium">Calculadoras laborales</p>
+              <p class="text-xs text-[var(--color-text-muted)]">Los calculos siguen la legislacion laboral peruana vigente: Decreto Legislativo N° 650 (CTS), Ley 27735 (gratificaciones), Ley 30334 (bonificacion extraordinaria) y el TUO del D. Leg. 728 (liquidacion).</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] mt-2 shrink-0"></div>
+            <div>
+              <p class="text-sm font-medium">Valores fiscales (UIT, RMV, IGV)</p>
+              <p class="text-xs text-[var(--color-text-muted)]">Actualizados segun los decretos supremos publicados por el Ministerio de Economia y Finanzas (MEF) y el Ministerio de Trabajo y Promocion del Empleo (MTPE).</p>
+            </div>
+          </li>
+        </ul>
+        <div class="mt-4 p-4 bg-amber-50 rounded-xl border border-amber-100">
+          <p class="text-xs text-amber-700 leading-relaxed">
+            <strong>Nota importante:</strong> La informacion en PeruCheck es de caracter referencial y orientativo.
+            Para declaraciones tributarias, procesos legales o consultas laborales formales, siempre recomendamos
+            verificar con las entidades oficiales correspondientes (SUNAT, MTPE, SBS) o consultar con un profesional calificado.
+          </p>
+        </div>
+      </div>
+
+      <!-- Quienes somos -->
+      <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-lg font-bold mb-3">Quienes somos</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          PeruCheck es un proyecto independiente desarrollado en Lima, Peru, por un equipo apasionado
+          por la tecnologia y el bienestar de los peruanos. Nacimos de la frustracion de tener que
+          buscar en multiples sitios para encontrar informacion basica del dia a dia: el tipo de cambio
+          de hoy, si mi carro puede circular o cuanto me van a depositar de CTS.
+        </p>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
+          Desde 2025 trabajamos continuamente para mejorar la plataforma, agregar nuevas herramientas
+          y garantizar que la informacion este siempre actualizada y sea precisa. Todos nuestros servicios
+          son completamente gratuitos y accesibles desde cualquier dispositivo, sin necesidad de registro.
+        </p>
+      </div>
+
+      <!-- Valores -->
+      <div class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-lg font-bold mb-4">Nuestros valores</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="text-center p-4 bg-indigo-50/50 rounded-xl">
+            <div class="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center mx-auto mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 11l3 3L22 4" />
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+              </svg>
+            </div>
+            <p class="font-semibold text-sm">Precision</p>
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">Datos verificados de fuentes oficiales, actualizados constantemente.</p>
+          </div>
+          <div class="text-center p-4 bg-emerald-50/50 rounded-xl">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center mx-auto mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </div>
+            <p class="font-semibold text-sm">Accesibilidad</p>
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">Gratis, sin registro, disponible en cualquier dispositivo las 24 horas.</p>
+          </div>
+          <div class="text-center p-4 bg-violet-50/50 rounded-xl">
+            <div class="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center mx-auto mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-violet-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <p class="font-semibold text-sm">Comunidad</p>
+            <p class="text-xs text-[var(--color-text-muted)] mt-1">Construido para y por peruanos, con las herramientas que realmente necesitan.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contacto CTA -->
+      <div class="bg-gradient-to-br from-indigo-50 to-violet-50 rounded-2xl border border-indigo-100 p-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+          <div>
+            <h2 class="text-lg font-bold">¿Tienes una sugerencia?</h2>
+            <p class="text-sm text-[var(--color-text-muted)] mt-1">
+              Nos encantaria escucharte. Si tienes ideas para nuevas herramientas, encontraste algun
+              error o quieres colaborar con nosotros, escribenos.
+            </p>
+          </div>
+          <a
+            href="/contacto"
+            class="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl gradient-primary text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-md shadow-indigo-200/50"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            Contactar
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</Layout>
