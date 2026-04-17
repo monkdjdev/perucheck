@@ -1,0 +1,274 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://perucheck.com';
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tipo de cambio del dolar en Peru 2026 - Guia completa",
+  "description": "Guia completa sobre el tipo de cambio del dolar en Peru 2026: como funciona, donde cambiar, diferencia entre compra y venta, SUNAT vs bancos y casas de cambio.",
+  "url": `${siteUrl}/tipo-de-cambio-dolar-peru-guia`,
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-04-01",
+  "author": { "@type": "Organization", "name": "PeruCheck", "url": siteUrl },
+  "publisher": { "@type": "Organization", "name": "PeruCheck", "url": siteUrl },
+  "inLanguage": "es-PE"
+};
+---
+
+<Layout
+  title="Tipo de Cambio del Dolar en Peru 2026 - Guia Completa"
+  description="Todo sobre el tipo de cambio dolar-sol en Peru 2026: diferencia entre compra y venta, donde cambiar mejor, tipo de cambio SUNAT, BCRP vs bancos, casas de cambio digitales y consejos para no perder dinero."
+  canonical="/tipo-de-cambio-dolar-peru-guia"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <Breadcrumb items={[{ label: 'Guia Tipo de Cambio', href: '/tipo-de-cambio-dolar-peru-guia' }]} />
+
+  <div class="max-w-3xl mx-auto">
+
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-wider">Guia</span>
+        <span class="text-xs text-[var(--color-text-muted)]">Actualizado 2026</span>
+      </div>
+      <h1 class="text-3xl font-bold leading-tight mb-3">Tipo de cambio del dolar en Peru 2026: guia completa</h1>
+      <p class="text-[var(--color-text-muted)] text-base leading-relaxed">
+        El tipo de cambio del dolar americano frente al sol peruano es uno de los indicadores
+        economicos que mas afecta el dia a dia de los peruanos. Esta guia explica como funciona,
+        donde encontrar el mejor tipo de cambio y como evitar perder dinero al cambiar divisas.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+
+      <!-- CTA widget -->
+      <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl border border-indigo-200 p-5 flex items-center justify-between gap-4">
+        <div>
+          <p class="text-sm font-semibold text-indigo-700">Ver tipo de cambio de hoy</p>
+          <p class="text-xs text-indigo-600 mt-0.5">Actualizado en tiempo real desde SUNAT, SBS y bancos</p>
+        </div>
+        <a href="/tipo-de-cambio" class="shrink-0 px-4 py-2 rounded-xl gradient-primary text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-md shadow-indigo-200/50">Ver TC</a>
+      </div>
+
+      <!-- Que es compra y venta -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">Compra y venta: ¿que significan?</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
+          Cuando ves el tipo de cambio en un banco o casa de cambio, siempre aparecen dos precios:
+          compra y venta. Es importante entender a cual precio aplica cada operacion:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
+            <p class="text-xs font-bold text-blue-600 uppercase mb-2">Tipo de cambio COMPRA</p>
+            <p class="text-sm text-blue-800 leading-relaxed">
+              Es el precio al que el banco o casa de cambio <strong>te compra los dolares</strong>.
+              Lo usas cuando quieres vender tus dolares para recibir soles.
+            </p>
+            <div class="mt-2 p-2 bg-blue-100 rounded-lg">
+              <p class="text-xs text-blue-700">Ejemplo: tienes USD 100 y los vendes al banco → recibes S/ 100 × tipo compra</p>
+            </div>
+          </div>
+          <div class="bg-indigo-50 rounded-xl p-4 border border-indigo-200">
+            <p class="text-xs font-bold text-indigo-600 uppercase mb-2">Tipo de cambio VENTA</p>
+            <p class="text-sm text-indigo-800 leading-relaxed">
+              Es el precio al que el banco o casa de cambio <strong>te vende los dolares</strong>.
+              Lo usas cuando quieres comprar dolares con tus soles.
+            </p>
+            <div class="mt-2 p-2 bg-indigo-100 rounded-lg">
+              <p class="text-xs text-indigo-700">Ejemplo: quieres USD 100 y los compras al banco → pagas S/ 100 × tipo venta</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-amber-50 rounded-xl p-4 border border-amber-100">
+          <p class="text-sm text-amber-800">
+            <strong>Regla facil:</strong> La compra siempre es menor que la venta. La diferencia entre
+            ambos (el "spread") es la ganancia del banco o casa de cambio. A menor spread, mejor tasa para ti.
+          </p>
+        </div>
+      </section>
+
+      <!-- Fuentes del TC -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">¿Donde se publica el tipo de cambio oficial?</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
+          En Peru existen varias fuentes oficiales del tipo de cambio. Cada una tiene un uso especifico:
+        </p>
+        <div class="space-y-4">
+          <div class="flex items-start gap-4 p-4 border border-[var(--color-border)] rounded-xl">
+            <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0">
+              <span class="text-sm font-extrabold text-red-600">SBS</span>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">SBS (Superintendencia de Banca y Seguros)</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1 leading-relaxed">
+                Publica el tipo de cambio promedio ponderado del sistema bancario. Es el referente
+                principal para contratos privados y es el que usa PeruCheck para mostrar el TC diario.
+                Se actualiza durante el horario bancario (9am a 1pm aproximadamente).
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 border border-[var(--color-border)] rounded-xl">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+              <span class="text-sm font-extrabold text-blue-600">BCRP</span>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">BCRP (Banco Central de Reserva del Peru)</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1 leading-relaxed">
+                Publica estadisticas del tipo de cambio y realiza operaciones de intervencion
+                cambiaria para reducir la volatilidad del sol. Su tipo de cambio de referencia es
+                el mas usado en analisis economicos y publicaciones financieras.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 border border-[var(--color-border)] rounded-xl">
+            <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center shrink-0">
+              <span class="text-sm font-extrabold text-orange-600">SNAT</span>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">SUNAT (tipo de cambio tributario)</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1 leading-relaxed">
+                SUNAT publica su propio tipo de cambio para convertir operaciones en dolares a soles
+                en las declaraciones tributarias. Se actualiza mensualmente y generalmente es el
+                promedio ponderado de compra y venta publicado por la SBS del ultimo dia habil del
+                mes anterior.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Donde cambiar -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">¿Donde conviene cambiar dolares en Peru?</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
+          No todos los lugares ofrecen el mismo tipo de cambio. Hay grandes diferencias entre opciones.
+          Aqui ordenadas de menor a mayor spread (de mejor a peor para el usuario):
+        </p>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3 p-4 bg-green-50 rounded-xl border border-green-200">
+            <span class="text-xl">💻</span>
+            <div>
+              <p class="font-semibold text-sm text-green-700">1. Casas de cambio digitales (mejor opcion)</p>
+              <p class="text-xs text-green-700 mt-1">Plataformas como Kambista, Rextie, TuCambista, etc. ofrecen los spreads mas bajos del mercado (0.3% a 0.8%). Operan online las 24 horas. Requieren registro y verificacion de identidad. Ideales para montos medianos y grandes.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-4 bg-blue-50 rounded-xl border border-blue-100">
+            <span class="text-xl">🏪</span>
+            <div>
+              <p class="font-semibold text-sm text-blue-700">2. Casas de cambio fisicas de confianza</p>
+              <p class="text-xs text-blue-700 mt-1">Las casas de cambio en Miraflores (Jr. Schell), San Isidro y el centro de Lima suelen tener mejores tasas que los bancos. Elige las formales (con RUC visible, personal identificado). Evita los "cambistas" en la calle.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-xl border border-[var(--color-border)]">
+            <span class="text-xl">🏦</span>
+            <div>
+              <p class="font-semibold text-sm">3. Bancos</p>
+              <p class="text-xs text-[var(--color-text-muted)] mt-1">Los bancos ofrecen seguridad y conveniencia, pero spreads mas altos (1% a 2.5%). Algunos bancos tienen ventanillas especializadas para cambio de divisas con mejores tasas. Util para montos pequenos o si ya eres cliente.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 p-4 bg-red-50 rounded-xl border border-red-100">
+            <span class="text-xl">⚠️</span>
+            <div>
+              <p class="font-semibold text-sm text-red-700">4. ATMs en aeropuertos y hoteles (peor opcion)</p>
+              <p class="text-xs text-red-700 mt-1">Los cajeros automaticos de aeropuertos internacionales y hoteles aplican comisiones muy altas (3% a 5% de spread mas comisiones fijas). Solo usarlos en emergencias.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Factores que afectan -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">¿Que factores mueven el tipo de cambio en Peru?</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-3">
+          El tipo de cambio sol/dolar fluctua diariamente por una combinacion de factores internos
+          y externos:
+        </p>
+        <ul class="space-y-3 text-sm text-[var(--color-text-muted)]">
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Precio de los metales:</strong> Peru es uno de los mayores exportadores de cobre, oro y plata. Cuando los precios de estos metales suben, el Peru recibe mas dolares por sus exportaciones, lo que fortalece el sol.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Politica de la Reserva Federal de EEUU (Fed):</strong> Cuando la Fed sube las tasas de interes, el dolar se fortalece globalmente, lo que presiona al sol a depreciarse (mas soles por dolar).</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Riesgo politico local:</strong> La incertidumbre politica en Peru (elecciones, crisis de gobierno, tension entre poderes del Estado) genera mayor demanda de dolares como refugio, debilitando el sol.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Intervencion del BCRP:</strong> El Banco Central de Reserva compra o vende dolares en el mercado para suavizar movimientos bruscos del tipo de cambio, sin fijar un precio especifico.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Temporadas de mayor demanda:</strong> En meses de pago de gratificaciones o CTS (julio, noviembre, diciembre), algunos trabajadores convierten soles a dolares como ahorro, lo que puede presionar el tipo de cambio al alza.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Tips -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-4">Consejos para obtener el mejor tipo de cambio</h2>
+        <div class="space-y-3">
+          {[
+            { n: '1', tip: 'Compara antes de cambiar', desc: 'Usa nuestro comparador de tipo de cambio para ver en tiempo real cuanto ofrecen diferentes bancos y casas de cambio digitales.' },
+            { n: '2', tip: 'Prefiere casas de cambio digitales para montos altos', desc: 'Si vas a cambiar mas de S/ 500, las plataformas digitales como Kambista o Rextie suelen superar la tasa del banco por varios centimos.' },
+            { n: '3', tip: 'Evita cambiar en aeropuertos', desc: 'Las tasas en aeropuertos son hasta 5% peores que en el mercado. Si puedes esperar, hazlo.' },
+            { n: '4', tip: 'Ten cuidado con "cambistas" en la calle', desc: 'Los cambistas informales conllevan riesgo de billetes falsos, robo y tipos de cambio engañosos. Solo usa establecimientos formales con RUC visible.' },
+            { n: '5', tip: 'Considera el horario', desc: 'El tipo de cambio se mueve durante el horario bancario (9am-1pm). Si el mercado esta volatil, monitorear el TC durante ese horario puede ayudarte a encontrar el momento mas favorable.' },
+          ].map((item) => (
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-full gradient-primary text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">{item.n}</div>
+              <div>
+                <p class="font-semibold text-sm">{item.tip}</p>
+                <p class="text-xs text-[var(--color-text-muted)] mt-0.5">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-4">Preguntas frecuentes sobre el tipo de cambio</h2>
+        <div class="space-y-4 text-sm text-[var(--color-text-muted)]">
+
+          <div class="border-b border-[var(--color-border)] pb-4">
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Que tipo de cambio usa SUNAT para declarar impuestos?</h3>
+            <p>SUNAT publica su propio tipo de cambio tributario mensual, que se usa para convertir operaciones en dolares a soles en las declaraciones. Este tipo de cambio se fija el ultimo dia habil de cada mes anterior y se aplica durante todo el mes siguiente.</p>
+          </div>
+
+          <div class="border-b border-[var(--color-border)] pb-4">
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Es mejor ahorrar en dolares o en soles en Peru?</h3>
+            <p>Depende del objetivo. Los soles en cuentas de ahorro o depositos a plazo en bancos peruanos ofrecen tasas de interes generalmente mas altas que los depositos en dolares. Sin embargo, algunos ahorristas prefieren dolares como proteccion ante depreciacion del sol. La mejor estrategia suele ser diversificar entre ambas monedas.</p>
+          </div>
+
+          <div class="border-b border-[var(--color-border)] pb-4">
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Puedo comprar dolares libremente en Peru?</h3>
+            <p>Si. En Peru no existen restricciones de control de cambios. Cualquier persona puede comprar y vender dolares u otras divisas libremente, en bancos y casas de cambio autorizadas. Para montos superiores a USD 10,000 en efectivo, las entidades tienen obligacion de reportar la operacion a la UIF (Unidad de Inteligencia Financiera) como parte de los controles contra lavado de activos.</p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿El sol peruano es una moneda estable?</h3>
+            <p>El sol es considerada una de las monedas mas estables de la region latinoamericana. El BCRP mantiene una politica monetaria activa y aplica intervenciones cambiarias para reducir la volatilidad excesiva. En periodos de crisis politica local o internacional, puede haber depreciaciones temporales, pero historicamente el sol se ha recuperado.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="bg-gradient-to-br from-indigo-50 to-violet-50 rounded-2xl border border-indigo-100 p-6 flex items-center justify-between gap-4">
+        <div>
+          <p class="font-bold">Ver tipo de cambio en tiempo real</p>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">Compara SUNAT, bancos y casas de cambio digitales.</p>
+        </div>
+        <a href="/tipo-de-cambio" class="shrink-0 px-4 py-2.5 rounded-xl gradient-primary text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-md shadow-indigo-200/50">Ver TC hoy</a>
+      </div>
+
+    </div>
+  </div>
+</Layout>

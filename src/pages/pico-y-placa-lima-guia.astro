@@ -1,0 +1,237 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const siteUrl = 'https://perucheck.com';
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Pico y Placa Lima 2026 - Guia completa de restriccion vehicular",
+  "description": "Todo sobre el pico y placa en Lima 2026: horarios, placas restringidas por dia, excepciones, multas y como consultarlo. Informacion actualizada.",
+  "url": `${siteUrl}/pico-y-placa-lima-guia`,
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-04-01",
+  "author": { "@type": "Organization", "name": "PeruCheck", "url": siteUrl },
+  "publisher": { "@type": "Organization", "name": "PeruCheck", "url": siteUrl },
+  "inLanguage": "es-PE"
+};
+
+const restricciones = [
+  { dia: 'Lunes', placas: ['1', '2'], color: 'blue' },
+  { dia: 'Martes', placas: ['3', '4'], color: 'emerald' },
+  { dia: 'Miercoles', placas: ['5', '6'], color: 'amber' },
+  { dia: 'Jueves', placas: ['7', '8'], color: 'rose' },
+  { dia: 'Viernes', placas: ['9', '0'], color: 'violet' },
+];
+---
+
+<Layout
+  title="Pico y Placa Lima 2026 - Guia Completa de Restriccion Vehicular"
+  description="Guia completa sobre el pico y placa en Lima Metropolitana 2026: horarios exactos, que placas restringen cada dia, zonas afectadas, excepciones, multas y como consultar tu placa."
+  canonical="/pico-y-placa-lima-guia"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <Breadcrumb items={[{ label: 'Guia Pico y Placa Lima', href: '/pico-y-placa-lima-guia' }]} />
+
+  <div class="max-w-3xl mx-auto">
+
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xs font-semibold text-amber-600 bg-amber-50 px-3 py-1 rounded-full uppercase tracking-wider">Guia</span>
+        <span class="text-xs text-[var(--color-text-muted)]">Actualizado 2026</span>
+      </div>
+      <h1 class="text-3xl font-bold leading-tight mb-3">Pico y Placa Lima 2026: guia completa</h1>
+      <p class="text-[var(--color-text-muted)] text-base leading-relaxed">
+        El sistema de pico y placa en Lima Metropolitana restringe la circulacion de vehiculos
+        particulares segun el ultimo digito de la placa, en determinados horarios y vias. Esta
+        guia explica todo lo que necesitas saber para no ser multado.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+
+      <!-- Que es -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">¿Que es el pico y placa?</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-3">
+          El pico y placa es una medida de gestion del transito urbano que restringe la circulacion
+          de vehiculos particulares en Lima Metropolitana durante las horas pico, con el objetivo
+          de reducir la congestion vehicular. El sistema establece que, segun el ultimo digito de
+          la placa del vehiculo, este no puede circular en ciertos dias de la semana durante las
+          horas de mayor trafico.
+        </p>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          La medida fue implementada originalmente por la Municipalidad Metropolitana de Lima y
+          aplica principalmente en las principales vias de la ciudad. No aplica fines de semana
+          ni feriados nacionales.
+        </p>
+      </section>
+
+      <!-- Horarios -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-4">Horarios de restriccion 2026</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div class="bg-amber-50 rounded-xl p-4 border border-amber-200">
+            <p class="text-xs font-bold text-amber-600 uppercase mb-2">Manana</p>
+            <p class="text-2xl font-extrabold text-amber-800">7:00 – 10:00</p>
+            <p class="text-xs text-amber-600 mt-1">Lunes a Viernes</p>
+          </div>
+          <div class="bg-amber-50 rounded-xl p-4 border border-amber-200">
+            <p class="text-xs font-bold text-amber-600 uppercase mb-2">Tarde</p>
+            <p class="text-2xl font-extrabold text-amber-800">17:00 – 20:00</p>
+            <p class="text-xs text-amber-600 mt-1">Lunes a Viernes</p>
+          </div>
+        </div>
+        <div class="bg-green-50 rounded-xl p-4 border border-green-100">
+          <p class="text-sm text-green-700">
+            <strong>Fuera de esos horarios</strong> (10:00 a 17:00 y despues de las 20:00), todos
+            los vehiculos pueden circular libremente, incluso si su placa esta restringida ese dia.
+          </p>
+        </div>
+      </section>
+
+      <!-- Restricciones por dia -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-4">Placas restringidas por dia</h2>
+        <div class="space-y-3">
+          {restricciones.map((r) => (
+            <div class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 border border-[var(--color-border)]">
+              <p class="font-semibold text-sm w-20 shrink-0">{r.dia}</p>
+              <div class="flex gap-2 flex-wrap">
+                {r.placas.map((p) => (
+                  <span class="w-10 h-10 rounded-xl bg-white border-2 border-gray-300 flex items-center justify-center text-lg font-extrabold text-[var(--color-text)]">{p}</span>
+                ))}
+              </div>
+              <p class="text-xs text-[var(--color-text-muted)] ml-auto">Termina en {r.placas.join(' o ')}</p>
+            </div>
+          ))}
+        </div>
+        <div class="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+          <p class="text-sm text-blue-700">
+            <strong>Sabado y Domingo:</strong> Sin restriccion de pico y placa. Todos los vehiculos
+            pueden circular libremente. Tampoco aplica en feriados nacionales.
+          </p>
+        </div>
+      </section>
+
+      <!-- Consultar placa -->
+      <section class="bg-amber-50 rounded-2xl border border-amber-200 p-6">
+        <h2 class="text-lg font-bold mb-2 text-amber-800">Consulta tu placa ahora</h2>
+        <p class="text-sm text-amber-700 mb-4">
+          Usa nuestra herramienta para saber si tu vehiculo tiene restriccion hoy.
+        </p>
+        <a href="/pico-y-placa" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600 transition-colors shadow-md shadow-amber-200/50">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10l-2-4H8L6 10l-2.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2" />
+            <circle cx="7" cy="17" r="2" />
+            <circle cx="17" cy="17" r="2" />
+          </svg>
+          Consultar Pico y Placa
+        </a>
+      </section>
+
+      <!-- Vias afectadas -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">¿En que vias aplica la restriccion?</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
+          La restriccion aplica en las principales vias de Lima Metropolitana, especialmente en
+          el area central y los principales ejes viales de la ciudad. Las vias donde rige el
+          pico y placa incluyen:
+        </p>
+        <ul class="text-sm text-[var(--color-text-muted)] space-y-2 list-disc list-inside">
+          <li>Av. Javier Prado (Este y Oeste)</li>
+          <li>Av. Arequipa</li>
+          <li>Av. Republica de Panama</li>
+          <li>Av. Universitaria</li>
+          <li>Av. La Marina</li>
+          <li>Av. Colonial</li>
+          <li>Av. Tupac Amaru</li>
+          <li>Av. Grau y Av. Abancay (en el cercado)</li>
+          <li>Vias expresas (Paseo de la Republica, Via de Evitamiento)</li>
+        </ul>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
+          Las calles internas de urbanizaciones y las pistas en distritos alejados del centro
+          generalmente no estan sujetas a la restriccion, aunque los vehiculos restringidos tampoco
+          pueden usarlas para evadir el control en las vias principales.
+        </p>
+      </section>
+
+      <!-- Excepciones -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">Excepciones al pico y placa</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-3">
+          No todos los vehiculos estan sujetos a la restriccion. Los siguientes estan exonerados:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {[
+            { icon: '🚑', titulo: 'Emergencias medicas', desc: 'Ambulancias y vehiculos que transportan pacientes a centros de salud.' },
+            { icon: '🚔', titulo: 'Seguridad y orden', desc: 'Policia Nacional, Serenazgo, Bomberos y Fuerzas Armadas en servicio.' },
+            { icon: '🚐', titulo: 'Transporte publico', desc: 'Buses, combis y taxis debidamente autorizados por la MML.' },
+            { icon: '♿', titulo: 'Discapacidad', desc: 'Vehiculos conducidos por o que transportan personas con discapacidad certificada.' },
+            { icon: '🏗️', titulo: 'Obras de emergencia', desc: 'Vehiculos de empresas de servicios publicos en caso de emergencia (agua, luz, gas).' },
+            { icon: '🛺', titulo: 'Carga y distribucion', desc: 'Vehiculos de reparto y carga autorizados con distintivo vigente, en horario permitido.' },
+          ].map((item) => (
+            <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-xl border border-[var(--color-border)]">
+              <span class="text-2xl shrink-0">{item.icon}</span>
+              <div>
+                <p class="font-semibold text-sm">{item.titulo}</p>
+                <p class="text-xs text-[var(--color-text-muted)] mt-0.5">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Multas -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">¿Cual es la multa por infringir el pico y placa?</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-3">
+          Circular en horas de restriccion con una placa restringida puede resultar en:
+        </p>
+        <ul class="text-sm text-[var(--color-text-muted)] space-y-2 list-disc list-inside mb-4">
+          <li>Papeleta de transito impuesta por la Policia de Transito o Fiscalizadores de la MML.</li>
+          <li>Multa equivalente al <strong class="text-[var(--color-text)]">8% de la UIT</strong> (S/ 440 en 2026) para infractores del regimen general.</li>
+          <li>Posible retencion del vehiculo si el conductor es reincidente o no porta los documentos en regla.</li>
+        </ul>
+        <div class="bg-red-50 rounded-xl p-4 border border-red-100">
+          <p class="text-sm text-red-700">
+            <strong>Importante:</strong> Las papeletas se pueden pagar con descuento si se cancela
+            dentro del plazo establecido. Pasado ese plazo, el monto aumenta y puede derivar en
+            inhabilitacion para renovar licencia o SOAT.
+          </p>
+        </div>
+      </section>
+
+      <!-- Preguntas frecuentes -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-4 text-sm text-[var(--color-text-muted)]">
+
+          <div class="border-b border-[var(--color-border)] pb-4">
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿El pico y placa aplica en todo Lima?</h3>
+            <p>No. Aplica en Lima Metropolitana, principalmente en las vias principales y ejes viales del area central. Muchos distritos perifericos y vias secundarias no estan directamente sujetos al control, aunque la normativa tecnica aplica a todo el ambito de la MML.</p>
+          </div>
+
+          <div class="border-b border-[var(--color-border)] pb-4">
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Aplica pico y placa en el Callao?</h3>
+            <p>No directamente. El Callao tiene su propia jurisdiccion municipal, separada de Lima Metropolitana. Sin embargo, los vehiculos que ingresan a Lima desde el Callao por vias principales (como la Av. Colonial o la Via de Evitamiento) si estan sujetos al pico y placa de Lima.</p>
+          </div>
+
+          <div class="border-b border-[var(--color-border)] pb-4">
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Que pasa si llevo pasajeros? ¿Me exoneran?</h3>
+            <p>No. Llevar pasajeros en vehiculo particular no exonera del pico y placa, a menos que sea un taxi debidamente autorizado. La restriccion aplica independientemente de la cantidad de ocupantes del vehiculo.</p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿El pico y placa aplica en feriados?</h3>
+            <p>No. Los feriados nacionales estan exonerados del pico y placa. Tampoco aplica sabados ni domingos. En esos dias, todos los vehiculos pueden circular libremente en cualquier horario.</p>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+</Layout>

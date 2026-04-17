@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { UIT, RMV } from '../utils/constants';
+
+const siteUrl = 'https://perucheck.com';
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Que es la UIT en Peru y para que sirve 2026",
+  "description": "Explicacion completa de la Unidad Impositiva Tributaria (UIT) en Peru 2026: valor, como afecta tus impuestos, multas, deducciones y calculos laborales.",
+  "url": `${siteUrl}/que-es-la-uit`,
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-04-01",
+  "author": { "@type": "Organization", "name": "PeruCheck", "url": siteUrl },
+  "publisher": { "@type": "Organization", "name": "PeruCheck", "url": siteUrl },
+  "inLanguage": "es-PE"
+};
+
+const uitHistorial = [
+  { anio: 2020, valor: 4300 },
+  { anio: 2021, valor: 4400 },
+  { anio: 2022, valor: 4600 },
+  { anio: 2023, valor: 4950 },
+  { anio: 2024, valor: 5150 },
+  { anio: 2025, valor: 5350 },
+  { anio: 2026, valor: 5500 },
+];
+---
+
+<Layout
+  title="Que es la UIT en Peru 2026 - Valor, Usos y Ejemplos"
+  description="Guia completa sobre la Unidad Impositiva Tributaria (UIT) en Peru 2026. Valor actual S/ 5,500, historial, como afecta el Impuesto a la Renta, multas SUNAT y beneficios laborales."
+  canonical="/que-es-la-uit"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <Breadcrumb items={[{ label: 'Que es la UIT', href: '/que-es-la-uit' }]} />
+
+  <div class="max-w-3xl mx-auto">
+
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Guia</span>
+        <span class="text-xs text-[var(--color-text-muted)]">Actualizado 2026</span>
+      </div>
+      <h1 class="text-3xl font-bold leading-tight mb-3">¿Que es la UIT en Peru y para que sirve?</h1>
+      <p class="text-[var(--color-text-muted)] text-base leading-relaxed">
+        La UIT (Unidad Impositiva Tributaria) es uno de los parametros mas importantes del sistema
+        tributario peruano. Aparece en impuestos, multas, beneficios laborales y mas. Esta guia
+        explica todo lo que necesitas saber sobre ella.
+      </p>
+    </div>
+
+    <!-- Valor destacado -->
+    <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200 p-6 mb-8">
+      <div class="flex items-center gap-4">
+        <div class="w-20 h-20 rounded-2xl bg-white border border-emerald-200 flex flex-col items-center justify-center shadow-sm shrink-0">
+          <p class="text-[10px] font-bold text-emerald-500 uppercase">UIT</p>
+          <p class="text-2xl font-extrabold text-emerald-700">2026</p>
+        </div>
+        <div>
+          <p class="text-3xl font-extrabold text-emerald-800">S/ {UIT.toLocaleString('es-PE')}</p>
+          <p class="text-sm text-emerald-600 mt-1">Vigente desde el 1 de enero de 2026 (D.S. N° 309-2025-EF)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+
+      <!-- Definicion -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">Definicion: ¿que es exactamente la UIT?</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-3">
+          La Unidad Impositiva Tributaria es un valor de referencia en soles que el Estado peruano
+          establece cada ano mediante Decreto Supremo. Su objetivo es servir como parametro uniforme
+          para calcular impuestos, multas, sanciones, deducciones y beneficios en la legislacion
+          tributaria y laboral del pais.
+        </p>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          Al ser una unidad de referencia que se ajusta periodicamente, la UIT permite que los montos
+          expresados en "numero de UITs" mantengan su valor real frente a la inflacion, sin necesidad
+          de modificar las leyes cada ano.
+        </p>
+      </section>
+
+      <!-- Impuesto a la Renta -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">UIT y el Impuesto a la Renta de personas naturales</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
+          Para los trabajadores dependientes (en planilla), la UIT es fundamental para calcular
+          cuanto Impuesto a la Renta de quinta categoria se descuenta mensualmente del sueldo.
+          El calculo funciona así:
+        </p>
+        <div class="space-y-3 mb-4">
+          <div class="bg-gray-50 rounded-xl p-4 border border-[var(--color-border)]">
+            <p class="text-xs font-semibold text-[var(--color-text-muted)] uppercase mb-2">Paso 1 — Calcular renta bruta anual</p>
+            <p class="text-sm text-[var(--color-text)]">Sueldo mensual × 14 (12 meses + 2 gratificaciones)</p>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-4 border border-[var(--color-border)]">
+            <p class="text-xs font-semibold text-[var(--color-text-muted)] uppercase mb-2">Paso 2 — Deduccion de 7 UITs</p>
+            <p class="text-sm text-[var(--color-text)]">Se restan 7 UITs = 7 × S/ 5,500 = <strong>S/ 38,500</strong> de deduccion fija</p>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-4 border border-[var(--color-border)]">
+            <p class="text-xs font-semibold text-[var(--color-text-muted)] uppercase mb-2">Paso 3 — Aplicar escala progresiva</p>
+            <div class="text-sm text-[var(--color-text)] space-y-1">
+              <p>Hasta 5 UIT (S/ 27,500): <strong>8%</strong></p>
+              <p>5 a 20 UIT (S/ 27,500 – S/ 110,000): <strong>14%</strong></p>
+              <p>20 a 35 UIT (S/ 110,000 – S/ 192,500): <strong>17%</strong></p>
+              <p>35 a 45 UIT (S/ 192,500 – S/ 247,500): <strong>20%</strong></p>
+              <p>Mas de 45 UIT (mas de S/ 247,500): <strong>30%</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-emerald-50 rounded-xl p-4 border border-emerald-100">
+          <p class="text-xs font-semibold text-emerald-600 mb-1">Ejemplo practico 2026</p>
+          <p class="text-sm text-emerald-800">
+            Sueldo mensual S/ 3,000 → Renta bruta anual: 3,000 × 14 = S/ 42,000 →
+            Menos 7 UITs: 42,000 – 38,500 = S/ 3,500 de renta neta →
+            Impuesto: 3,500 × 8% = S/ 280 anuales = S/ 23.33 mensuales.
+          </p>
+        </div>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
+          Como puedes ver, la deduccion de 7 UITs (S/ 38,500) es muy significativa. Un trabajador
+          que gana S/ 2,750 mensuales o menos no paga Impuesto a la Renta, porque su renta anual
+          (S/ 38,500) no supera las 7 UITs de deduccion.
+        </p>
+      </section>
+
+      <!-- Multas SUNAT -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">UIT en multas e infracciones tributarias</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-3">
+          Las multas que impone SUNAT se expresan en porcentajes de la UIT. Esto hace que las
+          sanciones se actualicen automaticamente cada año sin necesidad de cambiar la ley.
+          Algunos ejemplos de multas comunes:
+        </p>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between py-2 border-b border-[var(--color-border)] text-sm">
+            <span class="text-[var(--color-text-muted)]">No presentar declaracion en plazo</span>
+            <span class="font-semibold">1 UIT (S/ 5,500)</span>
+          </div>
+          <div class="flex items-center justify-between py-2 border-b border-[var(--color-border)] text-sm">
+            <span class="text-[var(--color-text-muted)]">No emitir comprobante de pago</span>
+            <span class="font-semibold">1 UIT (S/ 5,500)</span>
+          </div>
+          <div class="flex items-center justify-between py-2 border-b border-[var(--color-border)] text-sm">
+            <span class="text-[var(--color-text-muted)]">No llevar libros contables (PYME)</span>
+            <span class="font-semibold">0.6% UIT – 1 UIT</span>
+          </div>
+          <div class="flex items-center justify-between py-2 text-sm">
+            <span class="text-[var(--color-text-muted)]">Declare datos falsos en PDT</span>
+            <span class="font-semibold">50% tributo omitido</span>
+          </div>
+        </div>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mt-3">
+          SUNAT aplica regimenes de gradualidad que reducen estas multas significativamente si el
+          contribuyente subsana voluntariamente la infraccion antes de que sea detectada.
+        </p>
+      </section>
+
+      <!-- Laboral -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-3">UIT en el ambito laboral</h2>
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-3">
+          La UIT tambien aparece en la legislacion laboral peruana en varios contextos importantes:
+        </p>
+        <ul class="space-y-3 text-sm text-[var(--color-text-muted)]">
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Multas laborales (Sunafil):</strong> Las infracciones a la normativa laboral (no pagar beneficios, no registrar en planilla, etc.) se expresan en fracciones o multiples de UIT segun la gravedad y el numero de trabajadores afectados.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Regimenes laborales especiales:</strong> El regimen MYPE (micro y pequena empresa) define los umbrales de ventas en UITs: microempresa hasta 150 UITs anuales, pequena empresa hasta 1,700 UITs anuales.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0"></span>
+            <span><strong class="text-[var(--color-text)]">Seguro complementario de trabajo de riesgo:</strong> Algunos beneficios y coberturas se expresan en multiples de UIT (por ejemplo, coberturas de invalidez y sepelio).</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Historial UIT -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-4">Historial de la UIT en Peru (2020 – 2026)</h2>
+        <div class="space-y-2">
+          {uitHistorial.map((item) => (
+            <div class:list={[
+              "flex items-center gap-3 py-2 px-3 rounded-xl",
+              item.anio === 2026 ? "bg-emerald-50 border border-emerald-200" : "bg-gray-50"
+            ]}>
+              <span class:list={["text-sm font-bold w-12", item.anio === 2026 ? "text-emerald-700" : "text-[var(--color-text-muted)]"]}>{item.anio}</span>
+              <div class="flex-1 bg-gray-200 rounded-full h-2">
+                <div
+                  class:list={["h-2 rounded-full", item.anio === 2026 ? "bg-emerald-500" : "bg-indigo-300"]}
+                  style={`width: ${((item.valor - 4000) / 2000) * 100}%`}
+                ></div>
+              </div>
+              <span class:list={["text-sm font-semibold w-20 text-right", item.anio === 2026 ? "text-emerald-700" : "text-[var(--color-text)]"]}>
+                S/ {item.valor.toLocaleString('es-PE')}
+              </span>
+              {item.anio === 2026 && <span class="text-xs font-bold text-white bg-emerald-500 px-2 py-0.5 rounded-full">Vigente</span>}
+            </div>
+          ))}
+        </div>
+        <p class="text-xs text-[var(--color-text-muted)] mt-3">
+          La UIT ha subido S/ 1,200 en los ultimos 6 años (+27.9%), reflejando el ajuste por inflacion
+          y el crecimiento economico del pais.
+        </p>
+      </section>
+
+      <!-- Preguntas frecuentes -->
+      <section class="bg-white rounded-2xl border border-[var(--color-border)] p-6 hover:shadow-sm transition-shadow">
+        <h2 class="text-xl font-bold mb-4">Preguntas frecuentes sobre la UIT</h2>
+        <div class="space-y-4 text-sm text-[var(--color-text-muted)]">
+
+          <div class="border-b border-[var(--color-border)] pb-4">
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Cuando se actualiza la UIT?</h3>
+            <p>La UIT se actualiza generalmente en diciembre de cada año para regir desde el 1 de enero del siguiente. El Ministerio de Economia y Finanzas (MEF) la fija mediante Decreto Supremo, considerando la inflacion del año y otros factores economicos.</p>
+          </div>
+
+          <div class="border-b border-[var(--color-border)] pb-4">
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿La UIT aplica a todos los contribuyentes?</h3>
+            <p>Si. La UIT es un parametro de aplicacion general para todas las personas naturales y juridicas sujetas a la legislacion tributaria peruana. No importa el regimen tributario (RUS, RER, Regimen General, MYPE Tributario): la UIT como referencia aplica en todos.</p>
+          </div>
+
+          <div class="border-b border-[var(--color-border)] pb-4">
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿Cuantas UITs puedo deducir de mi sueldo?</h3>
+            <p>Los trabajadores dependientes (quinta categoria) tienen una deduccion fija de 7 UITs al calcular el Impuesto a la Renta anual. Adicionalmente, pueden deducir hasta 3 UITs adicionales por gastos deducibles (arrendamiento de vivienda, honorarios medicos y odontologicos, etc.) si presentan declaracion jurada anual.</p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-[var(--color-text)] mb-1">¿La UIT es lo mismo que la RMV?</h3>
+            <p>No. Son conceptos distintos aunque relacionados. La UIT (S/ 5,500 en 2026) es un parametro tributario de referencia. La RMV o sueldo minimo (S/ 1,130 en 2026) es el piso salarial mensual para trabajadores. La asignacion familiar, por ejemplo, es el 10% de la RMV, no de la UIT.</p>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+</Layout>
