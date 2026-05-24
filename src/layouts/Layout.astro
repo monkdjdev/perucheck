@@ -76,9 +76,6 @@ const fullTitle = title === 'Inicio' ? 'PeruCheck - Tu panel diario de informaci
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#6366f1" />
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7524782215145799" crossorigin="anonymous"></script>
-
     <!-- Dark mode anti-flash -->
     <script is:inline>
       (function() {
@@ -102,10 +99,28 @@ const fullTitle = title === 'Inicio' ? 'PeruCheck - Tu panel diario de informaci
   </head>
   <body class="bg-bg text-text min-h-screen flex flex-col">
     <Header />
+
+    <!-- Ezoic ad: top of page (bajo header) -->
+    <div id="ezoic-pub-ad-placeholder-101"></div>
+
     <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
       <slot />
+
+      <!-- Ezoic ad: mid content -->
+      <div id="ezoic-pub-ad-placeholder-102" class="my-6"></div>
     </main>
+
+    <!-- Ezoic ad: antes del footer -->
+    <div id="ezoic-pub-ad-placeholder-103"></div>
+
     <Footer />
     <Analytics />
+
+    <!-- Ezoic: mostrar todos los ads de la pagina -->
+    <script>
+      ezstandalone.cmd.push(function () {
+        ezstandalone.showAds(101, 102, 103);
+      });
+    </script>
   </body>
 </html>
