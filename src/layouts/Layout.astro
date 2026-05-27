@@ -92,13 +92,21 @@ const fullTitle = title === 'Inicio' ? 'PeruCheck - Tu panel diario de informaci
       <slot />
     </main>
 
-    <!-- AdsTerra Native Banner -->
-    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-2">
-      <div id="container-a34adcc0cc8b10fe3b17729909c0fc8e"></div>
+    <!-- AdsTerra 728x90 Banner -->
+    <div class="w-full flex justify-center py-2">
+      <script is:inline>
+        atOptions = {
+          'key' : 'a4e504818c62a0c2fb5c4a8f67af99bf',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script is:inline src="https://www.highperformanceformat.com/a4e504818c62a0c2fb5c4a8f67af99bf/invoke.js"></script>
     </div>
 
     <Footer />
     <Analytics />
-    <script async="async" data-cfasync="false" src="https://pl28671440.effectivecpmnetwork.com/a34adcc0cc8b10fe3b17729909c0fc8e/invoke.js" is:inline></script>
   </body>
 </html>
